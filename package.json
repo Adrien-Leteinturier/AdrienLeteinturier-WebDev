@@ -52,7 +52,7 @@
     "morgan": "^1.9.1",
     "ngx-scrollreveal": "^3.0.0",
     "ngx-toasta": "^0.1.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "nodemailer": "^6.4.6",
     "open-weather-icons": "0.0.7",
     "rxjs": "^6.5.5",
