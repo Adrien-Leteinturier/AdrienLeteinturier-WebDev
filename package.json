@@ -2,7 +2,7 @@
   "name": "site-web",
   "version": "0.0.0",
   "engines": {
-    "node": "13.8.0"
+    "node": "14.15.0"
   },
   "license": "MIT",
   "scripts": {
@@ -21,7 +21,7 @@
     "@angular/compiler": "14.2.10",
     "@angular/compiler-cli": "^14.2.10",
     "@angular/core": "14.2.10",
-    "@angular/fire": "^6.1.5",
+    "@angular/fire": "^7.4.0",
     "@angular/forms": "14.2.10",
     "@angular/http": "7.2.16",
     "@angular/language-service": "14.2.10",
@@ -36,12 +36,14 @@
     "bootstrap": "^4.4.1",
     "bower": "^1.8.8",
     "claudia": "^5.13.0",
-    "codelyzer": "^6.0.0",
+    "codelyzer": "^0.0.28",
     "core-js": "^2.5.7",
     "devicon": "^2.0.0",
     "express": "^4.16.3",
+    "firebase": "^7.0 || ^8.0",
     "flag-icon-css": "^3.2.1",
     "font-awesome": "^4.7.0",
+    "fs-extra": "^10.1.0",
     "google-auth-library": "^6.0.0",
     "gsap": "^3.6.0",
     "karma-coverage-istanbul-reporter": "^1.4.3",
@@ -55,8 +57,7 @@
     "rxjs-compat": "^6.3.3",
     "scrollreveal": "^4.0.7",
     "serve-favicon": "^2.5.0",
-    "zone.js": "~0.11.4",
-    "firebase": "^7.0 || ^8.0"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/architect": "0.1402.9",
@@ -64,22 +65,22 @@
     "@angular/cli": "^14.2.9",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "^2.0.5",
+    "firebase-tools": "^1.2.0",
     "fuzzy": "^0.1.3",
     "grpc": "^1.24.3",
     "inquirer": "^6.2.2",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
+    "jsonc-parser": "^3.0.0",
     "karma": "^6.4.1",
     "karma-chrome-launcher": "~3.1.0",
     "karma-cli": "~1.0.1",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "open": "^7.0.3",
     "protractor": "^7.0.0",
     "ts-node": "~3.2.0",
     "tslint": "~6.1.3",
-    "typescript": "4.6.4",
-    "firebase-tools": "^8.0.0 || ^9.0.0",
-    "open": "^7.0.3",
-    "jsonc-parser": "^3.0.0"
+    "typescript": "4.6.4"
   }
 }
