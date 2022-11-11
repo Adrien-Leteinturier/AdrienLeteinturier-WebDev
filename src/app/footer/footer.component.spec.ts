@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ElementFormsService } from '../element-forms/element-forms.service';
 import { FooterComponent } from './footer.component';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { HttpClient, ConnectionBackend, HttpClientModule } from '@angular/http';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { PresentationService } from '../presentation/presentation.service';
@@ -19,7 +19,7 @@ describe('HomeComponent', () => {
         ElementFormsService,
         HttpClient,
         ConnectionBackend,
-        FormBuilder,
+        UntypedFormBuilder,
         ToastsManager,
         ToastOptions,
         PresentationService

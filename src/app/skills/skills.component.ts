@@ -1,5 +1,5 @@
 import { Component, ApplicationRef, ElementRef, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastaConfig, ToastaService } from 'ngx-toasta';
 import { ElementFormsService } from '../element-forms/element-forms.service';
 import { PresentationService } from '../presentation/presentation.service';
@@ -15,13 +15,13 @@ import labels from '../config/labels';
 
 export class SkillsComponent implements OnInit{
     
-    accountDetailsForm: FormGroup;
+    accountDetailsForm: UntypedFormGroup;
     validationConfig = account_validation_messages;
     labelInputs = labels.input[0];
     
     constructor(    
         public elementFormService: ElementFormsService,
-        public fb: FormBuilder, 
+        public fb: UntypedFormBuilder, 
         public el : ElementRef,
         public toastaService:ToastaService,
         public toastaConfig: ToastaConfig){
@@ -46,15 +46,15 @@ export class SkillsComponent implements OnInit{
         createForms = () =>{
             // user links form validations
             this.accountDetailsForm = this.fb.group({
-              username: new FormControl('', Validators.compose([
+              username: new UntypedFormControl('', Validators.compose([
                Validators.minLength(5),
                Validators.required
               ])),
-              email: new FormControl('', Validators.compose([
+              email: new UntypedFormControl('', Validators.compose([
                 Validators.required,
                 Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
               ])),
-              message: new FormControl('', Validators.compose([
+              message: new UntypedFormControl('', Validators.compose([
                 Validators.minLength(5)
                ]))      
             })
