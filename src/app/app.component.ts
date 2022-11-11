@@ -3,9 +3,8 @@ import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
 import { AuthService } from './providers/auth.service';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
-import firebase from 'firebase/app';
-import {AngularFireAuth} from '@angular/fire/auth';
 import { slideInAnimation } from './animations';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +18,7 @@ import { slideInAnimation } from './animations';
 export class AppComponent {
 
   color: string;
-  user: Observable<firebase.User>;
+  user: Observable<any>;
   isLogged: Boolean;
   pseudo: String;
   email: String;

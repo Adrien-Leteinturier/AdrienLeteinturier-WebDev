@@ -20,11 +20,11 @@ import { ExponentialStrengthPipe } from './exponentielle-strength.pipe';
 import { environment} from '../environments/environment.prod';
 import { AuthService } from './providers/auth.service';
 import { HomeComponent } from './home/home.component';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireAuthModule} from '@angular/fire/auth';
 import { homeModule } from './home/home.module';
 import { NgsRevealModule } from 'ngx-scrollreveal';
 import { JobContentComponent } from './job-content/job-content.component';
+import { provideFirebaseApp, getApp, initializeApp } from "@angular/fire/app";
+import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, data: {animation: 'HomePage'}},
@@ -49,10 +49,9 @@ const appRoutes: Routes = [
     ExpsModule,
     ElementFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireModule,
-    AngularFireAuthModule,
-    RouterModule.forRoot(appRoutes),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
     NgsRevealModule
   ],
   providers:  [

@@ -16,17 +16,18 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "10.2.5",
-    "@angular/common": "10.2.5",
-    "@angular/compiler": "10.2.5",
-    "@angular/compiler-cli": "^10.2.5",
-    "@angular/core": "10.2.5",
-    "@angular/forms": "10.2.5",
+    "@angular/animations": "11.2.14",
+    "@angular/common": "11.2.14",
+    "@angular/compiler": "11.2.14",
+    "@angular/compiler-cli": "^11.2.14",
+    "@angular/core": "11.2.14",
+    "@angular/fire": "^6.1.5",
+    "@angular/forms": "11.2.14",
     "@angular/http": "7.2.16",
-    "@angular/language-service": "10.2.5",
-    "@angular/platform-browser": "10.2.5",
-    "@angular/platform-browser-dynamic": "10.2.5",
-    "@angular/router": "10.2.5",
+    "@angular/language-service": "11.2.14",
+    "@angular/platform-browser": "11.2.14",
+    "@angular/platform-browser-dynamic": "11.2.14",
+    "@angular/router": "11.2.14",
     "@popperjs/core": "^2.3.3",
     "@sendgrid/mail": "^7.0.0",
     "@types/node": "^6.0.118",
@@ -54,7 +55,8 @@
     "rxjs-compat": "^6.3.3",
     "scrollreveal": "^4.0.7",
     "serve-favicon": "^2.5.0",
-    "zone.js": "^0.10.3"
+    "zone.js": "^0.10.3",
+    "firebase": "^7.0 || ^8.0"
   },
   "devDependencies": {
     "@angular-devkit/architect": "<0.900 || ^0.900.0-0 || ^9.0.0-0",
@@ -75,6 +77,9 @@
     "protractor": "^7.0.0",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "4.0.8"
+    "typescript": "4.0.8",
+    "firebase-tools": "^8.0.0 || ^9.0.0",
+    "open": "^7.0.3",
+    "jsonc-parser": "^3.0.0"
   }
 }

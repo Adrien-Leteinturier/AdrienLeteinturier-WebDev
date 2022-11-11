@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular4-adrienleteintur-c4e11": {
+      "hosting": {
+        "site-web": [
+          "angular4-adrienleteintur-c4e11"
+        ]
+      }
+    }
+  }
+}
