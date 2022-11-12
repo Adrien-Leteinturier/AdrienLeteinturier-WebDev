@@ -4,7 +4,7 @@ import { AuthService } from './providers/auth.service';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { slideInAnimation } from './animations';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 
 @Component({
   selector: 'app-root',

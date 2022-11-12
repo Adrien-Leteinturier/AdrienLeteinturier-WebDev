@@ -1,7 +1,9 @@
 
 import { Injectable, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 @Injectable()
 

@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../providers/auth.service';
 import {Observable} from 'rxjs';
-import firebase from 'firebase';
 
 @Component({
 
@@ -14,7 +13,7 @@ import firebase from 'firebase';
 
 export class OfficeComponent implements OnInit {
 
-  user: Observable<firebase.User>;
+  user: Observable<any>;
   pseudo: string;
   email: string;
   photoUrl: string;

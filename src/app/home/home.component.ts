@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../providers/auth.service';
 
-declare var anime: any;
-declare var jquery:any;
 declare var $ :any;
 
 @Component({

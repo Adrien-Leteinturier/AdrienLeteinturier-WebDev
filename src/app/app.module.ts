@@ -23,8 +23,9 @@ import { HomeComponent } from './home/home.component';
 import { homeModule } from './home/home.module';
 import { NgsRevealModule } from 'ngx-scrollreveal';
 import { JobContentComponent } from './job-content/job-content.component';
-import { provideFirebaseApp, getApp, initializeApp } from "@angular/fire/app";
-import { getFirestore, provideFirestore } from "@angular/fire/firestore";
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, data: {animation: 'HomePage'}},
@@ -37,7 +38,7 @@ const appRoutes: Routes = [
     AppComponent,
     InputValidsDirective,
     ExponentialStrengthPipe,
-    JobContentComponent
+    JobContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,18 +50,17 @@ const appRoutes: Routes = [
     ExpsModule,
     ElementFormsModule,
     HttpClientModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
-    RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
-    NgsRevealModule
+    AngularFireModule.initializeApp(environment.firebase),
+    RouterModule.forRoot(appRoutes, { relativeLinkResolution: "legacy" }),
+    NgsRevealModule,
   ],
-  providers:  [
+  providers: [
     AuthService,
     ElementFormsService,
     PresentationService,
     WindowElementService,
-    NewsApiService
+    NewsApiService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
