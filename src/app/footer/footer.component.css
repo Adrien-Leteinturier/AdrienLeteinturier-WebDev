@@ -4,7 +4,7 @@
     margin: 90px 0 0 0;
 }
 
-.app-footer-container a{
+.app-footer-container a.social-items{
     font-size: 5em;
     margin: 20px;
     color: white;
@@ -14,3 +14,8 @@
     color: white;
 }
 
+.badge-base__link {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}

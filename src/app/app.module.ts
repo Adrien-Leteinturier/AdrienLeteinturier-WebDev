@@ -15,7 +15,6 @@ import { environment} from '../environments/environment.prod';
 import { AuthService } from './providers/auth.service';
 import { HomeComponent } from './home/home.component';
 import { homeModule } from './home/home.module';
-import { NgsRevealModule } from 'ngx-scrollreveal';
 import { JobContentComponent } from './job-content/job-content.component';
 import { AngularFireModule } from '@angular/fire/compat';
 
@@ -40,7 +39,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(appRoutes, { relativeLinkResolution: "legacy" }),
-    NgsRevealModule,
   ],
   providers: [
     AuthService,

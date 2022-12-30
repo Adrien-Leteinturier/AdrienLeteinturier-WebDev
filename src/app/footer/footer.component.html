@@ -1,9 +1,29 @@
 <div class="app-footer-container">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <ng-container *ngFor="let social of socials" >
-                <a href="{{social.link}}" title="{{social.title}}"><i class="{{social.classIco}}" aria-hidden="true"></i></a> 
-            </ng-container>
-        </div>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <div
+        class="badge-base LI-profile-badge mb-3"
+        data-locale="fr_FR"
+        data-size="large"
+        data-theme="light"
+        data-type="HORIZONTAL"
+        data-vanity="adrien-leteinturier"
+        data-version="v1"
+      >
+        <a
+          class="badge-base__link LI-simple-link"
+          href="https://fr.linkedin.com/in/adrien-leteinturier?trk=profile-badge"
+          >Adrien Leteinturier</a
+        >
+      </div>
+      <ng-container *ngFor="let social of socials">
+        <a
+          class="social-items"
+          href="{{ social.link }}"
+          title="{{ social.title }}"
+          ><i class="{{ social.classIco }}" aria-hidden="true"></i
+        ></a>
+      </ng-container>
     </div>
-</div> 
+  </div>
+</div>

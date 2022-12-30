@@ -1,46 +1,52 @@
-.app-exps{
-    margin: 90px 0 0 0;
+h2 {
+  font-family: "Alfa Slab One", cursive;
+  color: rgb(66, 67, 173);
+  text-align: center;
 }
 
-img{
-    margin: 0 0 0 200px;
-    width: 45%;
+img {
+  margin: 0 0 0 200px;
+  width: 45%;
 }
 
-.text-exps{
-    margin: 300px 0 0 220px;
+.app-exps {
+  margin: 90px 0 0 0;
 }
 
-.text-exps p{
-    color: #34353d;
-    font-size: 1.3em;
+.text-exps {
+  margin: 0 0 0 20px;
+  padding: 30px;
+}
+
+.text-exps p {
+  color: #34353d;
+  font-size: 1.3em;
 }
 
 .fa-linkedin {
-    font-size: 2em;
-    position: relative;
-    top: 8px;
+  font-size: 2em;
+  position: relative;
+  top: 8px;
 }
 
-@media screen and (max-width: 768px)
-{
-    .text-exps{
-        margin: auto !important;
-    }
+@media screen and (max-width: 768px) {
+  .text-exps {
+    margin: auto !important;
+  }
 
-    .text-exps p{
-        text-align: center;
-        font-size: 1.1em;
-    }
+  .text-exps p {
+    text-align: center;
+    font-size: 1.1em;
+  }
 
-    img{
-        margin: 0 0 0 200px;
-        width: 45%;
-    }
+  img {
+    margin: 0 0 0 200px;
+    width: 45%;
+  }
 }
 
 @media screen and (max-width: 1200px) {
-    .text-exps{
-        margin: 50px 0 0 20px;
-    }
+  .text-exps {
+    margin: 50px 0 0 20px;
+  }
 }

@@ -30,9 +30,7 @@
               "node_modules/ngx-toasta/styles/style-material.css"
             ],
             "scripts": [
-              "node_modules/scrollreveal/dist/scrollreveal.js",
               "node_modules/material-design-lite/material.js",
-              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "aot": false,
