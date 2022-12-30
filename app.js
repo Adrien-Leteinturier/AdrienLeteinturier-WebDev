@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const http = require('http');
-var mailer = require('nodemailer');
 const app = express();
 
 
@@ -16,9 +15,7 @@ app.get('*', function(req, res, next) {
 });
 
 app.post('/action',function(req,res,next){
-  console.log(req);
-  const sgMail = require('@sendgrid/mail');
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  //sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   const msg = {
     to: 'adrienleteinturier@gmail.com',
     from: 'adrienleteinturier@gmail.com',

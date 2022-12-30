@@ -1,52 +1,36 @@
 <div class="app-skills">
-    <div class="row">
-        <div class="col-xl-7 col-lg-7 col-md-12 col-xs-12 text-center">
-            <img class="illustration" src="../../assets/images/affaire-illustration.png" alt="illustration-affaire">
-        </div>
-        <div class="col-xl-5 col-lg-5 col-md-12 col-xs-12">
-            <div class="content-affaire">
-                <div class="text-affaire">
-                    <p>
-                        Développer votre affaire, créer votre identité sur internet.<br>
-                        Je créer votre e-commerce pour que vous puissez vendre vos produits en ligne.<br>
-                        Paiements securisés, click and collect et gestion de vos factures, livraisons, retours clients.
-                    </p>
-                    <div class="text-center">
-                        <img class="logo" src="../../assets/images/prestashop-logo.png" alt="logo-prestashop">
-                        <img class="logo" src="../../assets/images/logo-wordpress.png" alt="logo-wordpress">
-                    </div>
-                </div>
-                <form [formGroup]="accountDetailsForm" (ngSubmit)="postMailMessage(accountDetailsForm.value)" novalidate>
-                    <h5>Demandez votre devis</h5>
-                    <div class="form-group">
-                        <label for="email">{{labelInputs.email}}</label>
-                        <input id="email" type="email" class="form-control" formControlName="email" required [class.input-has-error]="accountDetailsForm.get('email').invalid && accountDetailsForm.get('email').touched">
-                        <div *ngFor="let validation of validationConfig.email">
-                            <small id="emailHelpId" class="form-text text-muted" [class.has-error]="accountDetailsForm.get('email').hasError(validation.type)" *ngIf="accountDetailsForm.get('email').hasError(validation.type) && (accountDetailsForm.get('email').dirty || accountDetailsForm.get('email').touched) ">{{validation.message}}<i class="fas fa-exclamation-triangle has-error absolute-input-warning-ico"></i></small>
-                        </div>      
-                    </div>
-                    <div class="form-group">
-                        <label for="username">{{labelInputs.username}}</label>
-                        <input id="username" type="username" class="form-control" formControlName="username" required [class.input-has-error]="accountDetailsForm.get('username').invalid && accountDetailsForm.get('username').touched">
-                        <div *ngFor="let validation of validationConfig.username">
-                            <small id="usernameHelpId" class="form-text text-muted" [class.has-error]="accountDetailsForm.get('username').hasError(validation.type)" *ngIf="accountDetailsForm.get('username').hasError(validation.type) && (accountDetailsForm.get('username').dirty || accountDetailsForm.get('username').touched)">{{validation.message}}<i class="fas fa-exclamation-triangle has-error absolute-input-warning-ico"></i></small>
-                        </div>               
-                    </div>
-                    <div class="form-group">
-                        <div *ngFor="let validation of validationConfig.message">
-                        <label for="message">{{labelInputs.message}}</label>
-                            <textarea id="message" type="message" class="form-control" formControlName="message" [class.input-has-error]="accountDetailsForm.get('message').hasError(validation.type)"></textarea>
-                            <small id="messageHelpId" class="form-text text-muted" [class.has-error]="accountDetailsForm.get('message').hasError(validation.type)" *ngIf="accountDetailsForm.get('message').hasError(validation.type) && (accountDetailsForm.get('message').dirty || accountDetailsForm.get('message').touched)">{{validation.message}}<i class="fas fa-exclamation-triangle has-error absolute-input-warning-ico"></i></small>
-                        </div>                
-                    </div>    
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                            <button class="mdl-button mdl-js-button mdl-button--raised" type="submit">Envoyer</button>
-                        </div>
-                    </div>                     
-                </form>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-xl-7 col-lg-7 col-md-12 col-xs-12 text-center">
+      <img
+        class="illustration"
+        src="../../assets/images/affaire-illustration.png"
+        alt="illustration-affaire"
+      />
     </div>
+    <div class="col-xl-5 col-lg-5 col-md-12 col-xs-12">
+      <div class="content-affaire">
+        <div class="text-affaire">
+          <p>
+            Développer votre affaire, créer votre identité sur internet.<br />
+            Je créer votre e-commerce pour que vous puissez vendre vos produits
+            en ligne.<br />
+            Paiements securisés, click and collect et gestion de vos factures,
+            livraisons, retours clients.
+          </p>
+          <div class="text-center">
+            <img
+              class="logo"
+              src="../../assets/images/prestashop-logo.png"
+              alt="logo-prestashop"
+            />
+            <img
+              class="logo"
+              src="../../assets/images/logo-wordpress.png"
+              alt="logo-wordpress"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<ngx-toasta [position]="'bottom-center'"></ngx-toasta>

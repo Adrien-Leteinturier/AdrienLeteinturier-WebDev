@@ -3,13 +3,14 @@
     right: 10px;
     top: 90%;
     z-index: 3;
-}
-
-button {
     opacity: 0;
     transition: all 500ms ease-in;
 }
 
-button:hover{
+.app-scroll-back-button.app-scroll-back-button-show{
+    opacity: 1;
+}
+
+.app-scroll-back-button.app-scroll-back-button-show:hover{
     transform: scale(1.2);
 }

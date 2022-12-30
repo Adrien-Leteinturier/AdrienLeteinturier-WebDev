@@ -1,41 +1,39 @@
-<div class=" mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header app-nav-link">
-      <div class="mdl-layout__header-row">
-        <!-- Title -->
-        <img src="assets/images/logo-adrien-50.png" alt="Logo" width="50px">
-        <!-- Add spacer, to align navigation to the right -->
-        <div class="mdl-layout-spacer"></div>
-        <!-- Navigation. We hide it in small screens. -->
-        <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <!-- <a class="mdl-navigation__link" (click)="login()">Services</a> -->
-          <a class="mdl-navigation__link scroll-to" href="#affaire">Developper votre affaire</a>
-          <a class="mdl-navigation__link scroll-to" href="#projects">Mes projets</a>
-          <a class="mdl-navigation__link scroll-to" href="#jobs">Mon parcours</a>
-          <a class="mdl-navigation__link scroll-to" href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer mdl-layout--small-screen-only">
-      <span class="mdl-layout-title">Navigation</span>
-      <nav class="mdl-navigation">
-          <!-- <a class="mdl-navigation__link" (click)="login()">Services</a> -->
-          <a class="mdl-navigation__link scroll-to" href="#affaire">Developper votre affaire</a>
-          <a class="mdl-navigation__link scroll-to" href="#projects">Mes projets</a>
-          <a class="mdl-navigation__link scroll-to" href="#jobs">Mon parcours</a>
-          <a class="mdl-navigation__link scroll-to" href="#contact">Contact</a>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header app-nav-link">
+    <div class="mdl-layout__header-row">
+      <img src="assets/images/logo-adrien-50.png" alt="Logo" width="50px">
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <p class="mdl-navigation__link" (click)="onScrollInAnchor('affaire')">Developper votre affaire</p>
+        <p class="mdl-navigation__link" (click)="onScrollInAnchor('projects')">Mes projets</p>
+        <p class="mdl-navigation__link" (click)="onScrollInAnchor('jobs')">Mon parcours</p>
+        <p class="mdl-navigation__link" (click)="onScrollInAnchor('contact')">Contact</p>
       </nav>
     </div>
-    <main id="main-content" class="mdl-layout__content main-content">
-      <div class="page-content">
-        <div class="container-fluid">
-            <app-pres id="home"></app-pres>
-            <app-skills id="affaire"></app-skills>
-            <app-application></app-application>
-            <app-job id="projects"></app-job>
-            <app-exps id="jobs"></app-exps>
-            <app-footer id="contact"></app-footer>
-            <app-scroll-back-button bgColorButton="#4243ad"></app-scroll-back-button>
-          </div>
-        </div>
-      </main>
-    </div>  
+  </header>
+  <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+    <span class="mdl-layout-title">Navigation</span>
+    <nav class="mdl-navigation">
+      <p class="mdl-navigation__link" (click)="onScrollInAnchor('affaire')">Developper votre affaire</p>
+      <p class="mdl-navigation__link" (click)="onScrollInAnchor('projects')">Mes projets</p>
+      <p class="mdl-navigation__link" (click)="onScrollInAnchor('jobs')">Mon parcours</p>
+      <p class="mdl-navigation__link" (click)="onScrollInAnchor('contact')">Contact</p>
+    </nav>
+  </div>
+  <main #mainContent id="main-content" (scroll)="isShowScrollBackButton = true" class="mdl-layout__content main-content">
+    <div class="page-content">
+      <div class="container-fluid">
+        <app-pres id="home"></app-pres>
+        <app-skills id="affaire"></app-skills>
+        <app-application></app-application>
+        <app-job id="projects"></app-job>
+        <app-exps id="jobs"></app-exps>
+        <app-footer id="contact"></app-footer>
+        <app-scroll-back-button 
+        [show]="isShowScrollBackButton" 
+        bgColorButton="#4243ad" 
+        (onClickScrollBackButton)="scrollTop()"></app-scroll-back-button>
+      </div>
+    </div>
+  </main>
+</div>  

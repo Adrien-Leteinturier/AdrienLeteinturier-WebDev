@@ -1,9 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ElementFormsService } from '../element-forms/element-forms.service';
 import { FooterComponent } from './footer.component';
 import { UntypedFormBuilder } from '@angular/forms';
-import { HttpClient, ConnectionBackend, HttpClientModule } from '@angular/http';
-import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { PresentationService } from '../presentation/presentation.service';
 
 
@@ -13,15 +10,10 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule ],
+      imports: [ ],
       declarations: [ FooterComponent ],
       providers: [
-        ElementFormsService,
-        HttpClient,
-        ConnectionBackend,
         UntypedFormBuilder,
-        ToastsManager,
-        ToastOptions,
         PresentationService
       ]
     })
@@ -38,7 +30,4 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should ElementFormsService return value form', () => {
-    console.log(ElementFormsService);
-  })
 });

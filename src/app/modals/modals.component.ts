@@ -1,7 +1,4 @@
-import { Component, Input, OnInit, HostListener, OnChanges, ViewChild, ElementRef } from '@angular/core';
-import * as $ from 'jquery';
-
-declare var $ :any; 
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 @Component({
     selector: 'app-modal',

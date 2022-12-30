@@ -1,5 +1,7 @@
-<a href="#home">
-<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored app-scroll-back-button">
-    <i class="fas fa-arrow-circle-up"></i>
-  </button>
-</a>
+<button 
+  (click)="scrollTop()" 
+  [ngStyle]="{'backgroundColor': bgColorButton}" 
+  [ngClass]="{'app-scroll-back-button-show': show}"
+  class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored app-scroll-back-button">
+  <i class="fas fa-arrow-circle-up"></i>
+</button>
