@@ -1,6 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-@import './variables.scss';
+@import '../../node_modules/bootstrap/scss/bootstrap';
+@import './fonts.scss';
 
-body {
-    background-color: $EerieBlack;
+:root {
+    // BOOTSTRAP 
+
+    // body
+    --bs-body-bg: #141C1B;
+    --bs-body-font-family: 'Titillium Web';
+    --bs-body-font-weight: 400;
+
+    // navbar
+    --bs-tertiary-bg-rgb: #141C1B;
+    --bs-emphasis-color-rgb: rgba(85, 232, 183);
+    --bs-navbar-toggler-icon-bg: '';
+
+    // CUSTOM
+    --color-errie-black: #141C1B;
+    --color-medium-aquamarine: #55e8b7;
+    --color-white: #fff;
 }
