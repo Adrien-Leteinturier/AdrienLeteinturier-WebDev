@@ -1,0 +1,39 @@
+<nav
+  class="navbar navbar-expand-lg bg-body-tertiary"
+  [ngStyle]="{ height: isMenuOpened ? 'inherit' : '60px' }"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand ms-2" href="#">
+      <span class="nickname">Adrien&nbsp;</span>Leteinturier
+    </a>
+
+    <div
+      id="navbar-button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      class="d-lg-none"
+      [ngClass]="{ open: isMenuOpened }"
+      (click)="toggleMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 ms-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Me</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Projects</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

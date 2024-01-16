@@ -1,48 +1,245 @@
-<nav
-  class="navbar navbar-expand-lg bg-body-tertiary"
-  [ngStyle]="{ height: isMenuOpened ? 'inherit' : '45px' }"
->
-  <div class="container-fluid">
-    <a class="navbar-brand ms-2" href="#">
-      <span class="nickname">Adrien&nbsp;</span>Leteinturier
-    </a>
+<navbar></navbar>
+<div class="container m-auto">
+  <section class="myself my-5">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+        <div class="title-container">
+          <h1>Web Developer</h1>
+        </div>
+        <div class="punchline my-5">
+          <p class="punch">
+            Tell me about your inspiration,<br />
+            I will create with mine
+          </p>
+          <p class="line">My Job, a game in which I am the hero</p>
+        </div>
+        <div class="row exp text-center my-5">
+          <div class="text-center col">
+            <p>8</p>
+            <span>YEARS EXPERIENCE</span>
+          </div>
 
-    <div
-      id="navbar-button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      class="d-lg-none"
-      [ngClass]="{ open: isMenuOpened }"
-      (click)="toggleMenu()"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
+          <div class="text-center col">
+            <p>7</p>
+            <span>HIGH AUDIENCE PROJECTS</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 text-center"
+      >
+        <div class="people-card my-5">
+          <div class="people-image">
+            <img
+              class="me_img"
+              ngSrc="assets/img/me.png"
+              alt="photo de Adrien Leteinturier - WebDeveloper"
+              fill
+              priority
+            />
+          </div>
+          <div class="people-info">
+            <ul class="people-social">
+              <li>
+                <a href="https://twitter.com/AdrienDeveloper" target="_blank"
+                  ><img
+                    ngSrc="assets/img/twitter.svg"
+                    width="30"
+                    height="30"
+                    class="social-icons"
+                /></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/AdrienDeveloper"
+                  target="_blank"
+                  ><img
+                    ngSrc="assets/img/facebook.svg"
+                    width="30"
+                    height="30"
+                    class="social-icons"
+                /></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/adrien-leteinturier/"
+                  target="_blank"
+                  ><img
+                    ngSrc="assets/img/linkedin.svg"
+                    width="30"
+                    height="30"
+                    class="social-icons"
+                /></a>
+              </li>
+            </ul>
+            <h3 class="people-name">Adrien Leteinturier</h3>
+            <p class="people-desc">
+              License Developpeur Web <br />
+              Bac Infographie
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+  <section class="skills my-5" #skills>
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+        <div
+          class="illustration"
+          [ngStyle]="{
+            border: neonEffectIsDone ? '2px solid #55e8b7' : 'none'
+          }"
+        >
+          <h2
+            [@neonEffect]="isOn ? 'on' : 'off'"
+            (@neonEffect.done)="onAnimationEvent($event)"
+          >
+            Design
+          </h2>
+          <div
+            class="text-center"
+            [ngStyle]="{ opacity: neonEffectIsDone ? 1 : 0 }"
+          >
+            <img
+              ngSrc="assets/img/photoshop.svg"
+              alt="picto photoshop"
+              width="70"
+              height="70"
+              priority
+            />
+            <img
+              ngSrc="assets/img/sass.svg"
+              alt="picto sass"
+              width="70"
+              height="70"
+              priority
+            />
+            <img
+              ngSrc="assets/img/html.svg"
+              alt="picto html"
+              width="70"
+              height="70"
+              priority
+            />
+          </div>
+        </div>
+        <div
+          class="illustration"
+          [ngStyle]="{
+            border: neonEffectIsDone ? '2px solid #55e8b7' : 'none'
+          }"
+        >
+          <h2
+            [@neonEffect]="isOn ? 'on' : 'off'"
+            (@neonEffect.done)="onAnimationEvent($event)"
+          >
+            Front-end
+          </h2>
+          <div
+            class="text-center"
+            [ngStyle]="{ opacity: neonEffectIsDone ? 1 : 0 }"
+          >
+            <img
+              ngSrc="assets/img/js.svg"
+              alt="picto javascript"
+              width="70"
+              height="70"
+              priority
+            />
+            <img
+              ngSrc="assets/img/angular.svg"
+              alt="picto angular"
+              width="70"
+              height="70"
+              priority
+            />
+            <img
+              ngSrc="assets/img/react.svg"
+              alt="picto react"
+              width="70"
+              height="70"
+              priority
+            />
+          </div>
+        </div>
+        <div
+          class="illustration"
+          [ngStyle]="{
+            border: neonEffectIsDone ? '2px solid #55e8b7' : 'none'
+          }"
+        >
+          <h2
+            [@neonEffect]="isOn ? 'on' : 'off'"
+            (@neonEffect.done)="onAnimationEvent($event)"
+          >
+            Back-end
+          </h2>
+          <div
+            class="text-center"
+            [ngStyle]="{ opacity: neonEffectIsDone ? 1 : 0 }"
+          >
+            <img
+              ngSrc="assets/img/node-js.svg"
+              alt="picto node js"
+              width="70"
+              height="70"
+              priority
+            />
+            <img
+              ngSrc="assets/img/nestjs.svg"
+              alt="picto nestjs"
+              width="70"
+              height="70"
+              priority
+            />
+            <img
+              ngSrc="assets/img/java.svg"
+              alt="picto java"
+              width="70"
+              height="70"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+        <div
+          [ngStyle]="{
+            opacity: neonEffectIsDone ? '1' : '0'
+          }"
+          class="desc"
+        >
+          <h2 class="mb-5">
+            Codeur Web Multitâche : Front-end, Back-end, et une Pincée de Fun !
+          </h2>
+          <p>
+            Salut tout le monde ! 👋 Moi, c'est <span>Adrien</span>, un
+            passionné du web et professionnel depuis plus de 8 ans ! 🌐✨ Avec
+            un Bac en Infographie et une Licence en Développement Web, je suis
+            comme un chef d'orchestre du code, spécialisé dans le front-end tout
+            en étant aussi à l'aise en back-end.<br /><br />
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 ms-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Me</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Projects</a>
-        </li>
-      </ul>
+            Pas besoin de vous sortir un discours pompeux, mais je jongle avec
+            Photoshop pour donner ce petit plus visuel à mes créations.
+            JavaScript, Angular, React, Java, NodeJs, c'est ma boîte à outils pour
+            faire vibrer le côté visible de vos sites web. 💻🚀<br /><br />
+
+            Quand il s'agit de donner vie à des pages HTML, je m'éclate aussi
+            avec une petite dose de CSS et Sass pour leur donner du style. Et
+            devinez quoi ? Je suis aussi un as du back-end, manœuvrant entre les
+            bases de données Mongo et SQL comme un pro.<br /><br />
+
+            J'ai eu la chance de bosser sur des gros projets, mais
+            maintenant, c'est votre projet qui m'excite. Pour des coulisses de
+            mes aventures front-end et back-end, jetez un œil à mes réseaux
+            sociaux. Pas de blabla, juste du code et des idées qui claquent !
+            🤘💻 Ready to make your website pop on all fronts? Let's do this!
+            🔥🚀
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-</nav>
-<div class="container-fluid">
-  <section></section>
-  <section></section>
+  </section>
   <section></section>
 </div>

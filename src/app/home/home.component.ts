@@ -1,17 +1,80 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { NavbarComponent } from '../navbar/navbar.component';
+import {
+  AnimationEvent,
+  animate,
+  keyframes,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
+  imports: [NgOptimizedImage, NavbarComponent, CommonModule],
+  animations: [
+    trigger('neonEffect', [
+      state(
+        'off',
+        style({
+          opacity: 0,
+        })
+      ),
+      state(
+        'on',
+        style({
+          opacity: 1,
+        })
+      ),
+      transition('* => on', [
+        animate(
+          '1.5s',
+          keyframes([
+            style({ opacity: 0 }),
+            style({ opacity: 0.3 }),
+            style({ opacity: 0 }),
+            style({ opacity: 0.6 }),
+            style({ opacity: 0 }),
+            style({ opacity: 1 }),
+          ])
+        ),
+      ]),
+    ]),
+  ],
 })
-export class HomeComponent {
-  isMenuOpened = false;
+export class HomeComponent implements OnInit {
+  @ViewChild('skills') skills!: ElementRef;
 
-  toggleMenu() {
-    this.isMenuOpened = !this.isMenuOpened;
+  isOn!: boolean;
+  neonEffectIsDone!: boolean;
+
+  @HostListener('window:scroll')
+  onScroll() {
+    const skillElement = this.skills.nativeElement as HTMLElement;
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    if (
+      scrollPosition >= skillElement.getBoundingClientRect().top ||
+      skillElement.getBoundingClientRect().top < window.innerHeight / 2
+    ) {
+      this.isOn = true;
+    }
+  }
+
+  ngOnInit() {
+  }
+
+  onAnimationEvent(event: AnimationEvent) {
+    this.neonEffectIsDone = event.toState === 'on';
   }
 }
