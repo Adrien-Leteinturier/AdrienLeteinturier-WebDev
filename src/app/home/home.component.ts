@@ -22,7 +22,6 @@ import {
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  imports: [NgOptimizedImage, NavbarComponent, CommonModule],
   animations: [
     trigger('neonEffect', [
       state(
@@ -52,12 +51,45 @@ import {
       ]),
     ]),
   ],
+  imports: [NgOptimizedImage, NavbarComponent, CommonModule],
 })
 export class HomeComponent implements OnInit {
   @ViewChild('skills') skills!: ElementRef;
 
   isOn!: boolean;
   neonEffectIsDone!: boolean;
+  careerExps = [
+    {
+      title: 'LA FRANÇAISE DES JEUX',
+      img: 'assets/img/la_francaise_des_jeux_logo.jpeg',
+      content: '',
+    },
+    {
+      title: 'EUROPE ASSISTANCE',
+      img: 'assets/img/europ_assistance_logo.jpeg',
+      content: '',
+    },
+    {
+      title: 'SOCIETE GENERALE',
+      img: 'assets/img/societe-generale.jpeg',
+      content: '',
+    },
+    {
+      title: 'RENAULT',
+      img: 'assets/img/renault.jpeg',
+      content: '',
+    },
+    {
+      title: 'KPSULE',
+      img: 'assets/img/kpsule.jpeg',
+      content: '',
+    },
+    {
+      title: 'VLIS',
+      img: 'assets/img/vlis.png',
+      content: '',
+    },
+  ];
 
   @HostListener('window:scroll')
   onScroll() {
@@ -71,8 +103,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onAnimationEvent(event: AnimationEvent) {
     this.neonEffectIsDone = event.toState === 'on';

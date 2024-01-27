@@ -1,6 +1,6 @@
 <navbar></navbar>
 <div class="container m-auto">
-  <section class="myself my-5">
+  <section id="myself" class="myself my-5">
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
         <div class="title-container">
@@ -66,7 +66,7 @@
                   target="_blank"
                   ><img
                     ngSrc="assets/img/linkedin.svg"
-                    width="30"
+                    width="27"
                     height="30"
                     class="social-icons"
                 /></a>
@@ -82,7 +82,7 @@
       </div>
     </div>
   </section>
-  <section class="skills my-5" #skills>
+  <section id="skills" class="skills my-5" #skills>
     <div class="row">
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
         <div
@@ -221,25 +221,32 @@
             en étant aussi à l'aise en back-end.<br /><br />
 
             Pas besoin de vous sortir un discours pompeux, mais je jongle avec
-            Photoshop pour donner ce petit plus visuel à mes créations.
-            JavaScript, Angular, React, Java, NodeJs, c'est ma boîte à outils pour
-            faire vibrer le côté visible de vos sites web. 💻🚀<br /><br />
+            JavaScript, Angular, React, Java, NodeJs, c'est ma boîte à outils
+            pour faire vibrer vos sites web. 💻🚀<br /><br />
 
             Quand il s'agit de donner vie à des pages HTML, je m'éclate aussi
             avec une petite dose de CSS et Sass pour leur donner du style. Et
-            devinez quoi ? Je suis aussi un as du back-end, manœuvrant entre les
-            bases de données Mongo et SQL comme un pro.<br /><br />
+            devinez quoi ? Je suis aussi un as du back-end, manœuvrant entre
+            JAVA, les bases de données Mongo et SQL comme un pro.<br /><br />
 
-            J'ai eu la chance de bosser sur des gros projets, mais
-            maintenant, c'est votre projet qui m'excite. Pour des coulisses de
-            mes aventures front-end et back-end, jetez un œil à mes réseaux
-            sociaux. Pas de blabla, juste du code et des idées qui claquent !
-            🤘💻 Ready to make your website pop on all fronts? Let's do this!
-            🔥🚀
+            J'ai eu la chance de bosser sur des gros projets, mais maintenant,
+            c'est votre projet qui m'excite. Pour des coulisses de mes aventures
+            front-end et back-end, jetez un œil à mes réseaux sociaux. Pas de
+            blabla, juste du code et des idées qui claquent ! 🤘💻 Ready to make
+            your website pop on all fronts? Let's do this! 🔥🚀
           </p>
         </div>
       </div>
     </div>
   </section>
-  <section></section>
+  <section id="career" class="career my-5">
+    <div class="row">
+      <h2 class="mb-5">My career</h2>
+      <ng-container *ngFor="let item of careerExps">
+        <div class="exp col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3" [ngStyle]="{'background-image': 'url(' + item.img + ')'}">
+          <h3 hidden>{{ item.title }}</h3>
+        </div>
+      </ng-container>
+    </div>
+  </section>
 </div>
