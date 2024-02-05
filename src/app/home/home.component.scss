@@ -52,6 +52,7 @@
   margin: 0 auto;
   transform: rotate(10deg);
   background-color: var(--color-medium-aquamarine);
+
   .people-image {
     position: relative;
     padding: 4px;
@@ -61,13 +62,10 @@
     overflow: hidden;
     border-radius: 100%;
     border: 5px solid rgba(#fff, 0.5);
+
     img {
-      position: absolute;
-      object-fit: contain;
+      object-fit: cover;
       z-index: 1;
-      top: 50%;
-      left: 50%;
-      width: 100%;
     }
   }
   .people-info {
