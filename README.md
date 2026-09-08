@@ -1,27 +1,34 @@
-# Projet
+# Portfolio d’Adrien Leteinturier
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+Portfolio Angular présentant le profil, les compétences et le parcours d’Adrien, aujourd’hui tech lead / lead dev chez La Française des Jeux (FDJ).
 
-## Development server
+## Développement
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Node.js 24.15 ou supérieur dans la branche 24 LTS.
 
-## Code scaffolding
+```sh
+npm ci
+npm start
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Vérifications
 
-## Build
+```sh
+npm test
+npm run build
+npm run format:check
+npm audit
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Les tests Vitest vérifient le contenu initial, les trois sections et le comportement accessible du menu mobile. Le build de production est généré dans `dist/projet/browser`.
 
-## Running unit tests
+Angular 22 fonctionne sans Zone.js, avec composants standalone, détection OnPush et signal pour le menu. Les effets CSS respectent `prefers-reduced-motion`. Les images et la police Titillium Web sont hébergées localement.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+TypeScript reste en 6.0 et Vitest en 4.1 : leurs versions majeures suivantes ne sont pas compatibles avec les contraintes déclarées par `@angular/build@22.1.7`.
 
-## Running end-to-end tests
+## Vercel
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Le projet existant `adrien-leteinturier-web-dev` est lié au dépôt GitHub `Adrien-Leteinturier/AdrienLeteinturier-WebDev`.
+La configuration versionnée dans `vercel.json` définit Angular, la commande de build et le dossier de sortie. La version de Node est fixée par `package.json`.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Le déploiement initial de cette refonte est réalisé via le connecteur MCP Vercel. La publication d’une branche Git ne remplace pas automatiquement la branche de production.

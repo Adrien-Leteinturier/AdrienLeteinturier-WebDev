@@ -1,39 +1,30 @@
-<nav
-  class="navbar navbar-expand-lg bg-body-tertiary"
-  [ngStyle]="{ height: isMenuOpened ? 'inherit' : '60px' }"
->
-  <div class="container-fluid">
-    <a class="navbar-brand ms-2" href="#">
-      <span class="nickname">Adrien&nbsp;</span>Leteinturier
-    </a>
-
-    <div
-      id="navbar-button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      class="d-lg-none"
-      [ngClass]="{ open: isMenuOpened }"
-      (click)="toggleMenu()"
+<a class="skip-link" href="#main-content">Aller au contenu</a>
+<header (keydown.escape)="closeMenu()">
+  <nav class="container" aria-label="Navigation principale">
+    <a class="brand" href="#myself" (click)="closeMenu()"
+      ><span class="brand-symbol" aria-hidden="true">a<span>.</span></span
+      ><span>Adrien<br /><strong>Leteinturier</strong></span></a
     >
-      <span></span>
-      <span></span>
-      <span></span>
+    <button
+      class="menu-toggle"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpened()"
+      aria-controls="main-navigation"
+    >
+      {{ isMenuOpened() ? "Fermer ×" : "Menu +" }}
+    </button>
+    <div id="main-navigation" [class.open]="isMenuOpened()">
+      <a href="#myself" (click)="closeMenu()">À propos</a
+      ><a href="#skills" (click)="closeMenu()">Compétences</a
+      ><a href="#career" (click)="closeMenu()">Parcours</a
+      ><a
+        class="nav-contact"
+        href="https://www.linkedin.com/in/adrien-leteinturier/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Discutons <span aria-hidden="true">↗</span></a
+      >
     </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 ms-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#myself">Me</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#skills">Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#career">Career</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  </nav>
+</header>

@@ -1,111 +1,57 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-import {
-  AnimationEvent,
-  animate,
-  keyframes,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-
 @Component({
-  selector: 'home',
-  standalone: true,
+  selector: 'app-home',
+  imports: [NgOptimizedImage, NavbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  animations: [
-    trigger('neonEffect', [
-      state(
-        'off',
-        style({
-          opacity: 0,
-        })
-      ),
-      state(
-        'on',
-        style({
-          opacity: 1,
-        })
-      ),
-      transition('* => on', [
-        animate(
-          '1.5s',
-          keyframes([
-            style({ opacity: 0 }),
-            style({ opacity: 0.3 }),
-            style({ opacity: 0 }),
-            style({ opacity: 0.6 }),
-            style({ opacity: 0 }),
-            style({ opacity: 1 }),
-          ])
-        ),
-      ]),
-    ]),
-  ],
-  imports: [NgOptimizedImage, NavbarComponent, CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
-  @ViewChild('skills') skills!: ElementRef;
-
-  isOn!: boolean;
-  neonEffectIsDone!: boolean;
-  careerExps = [
+export class HomeComponent {
+  readonly skills = [
     {
-      title: 'LA FRANÇAISE DES JEUX',
-      img: 'assets/img/la_francaise_des_jeux_logo.jpeg',
-      content: '',
+      name: 'Design',
+      detail: 'Le souci du détail.',
+      tools: [
+        { name: 'Photoshop', image: 'photoshop.svg' },
+        { name: 'Sass', image: 'sass.svg' },
+        { name: 'HTML', image: 'html.svg' },
+      ],
     },
     {
-      title: 'EUROPE ASSISTANCE',
-      img: 'assets/img/europ_assistance_logo.jpeg',
-      content: '',
+      name: 'Front-end',
+      detail: 'Des interfaces qui prennent vie.',
+      tools: [
+        { name: 'JavaScript', image: 'js.svg' },
+        { name: 'Angular', image: 'angular.svg' },
+        { name: 'React', image: 'react.svg' },
+      ],
     },
     {
-      title: 'SOCIETE GENERALE',
-      img: 'assets/img/societe-generale.jpeg',
-      content: '',
-    },
-    {
-      title: 'RENAULT',
-      img: 'assets/img/renault.jpeg',
-      content: '',
-    },
-    {
-      title: 'KPSULE',
-      img: 'assets/img/kpsule.jpeg',
-      content: '',
-    },
-    {
-      title: 'VLIS',
-      img: 'assets/img/vlis.png',
-      content: '',
+      name: 'Back-end',
+      detail: 'De solides fondations.',
+      tools: [
+        { name: 'Node.js', image: 'node-js.svg' },
+        { name: 'NestJS', image: 'nestjs.svg' },
+        { name: 'Java', image: 'java.svg' },
+      ],
     },
   ];
-
-  @HostListener('window:scroll')
-  onScroll() {
-    const skillElement = this.skills.nativeElement as HTMLElement;
-    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-    if (
-      scrollPosition >= skillElement.getBoundingClientRect().top ||
-      skillElement.getBoundingClientRect().top < window.innerHeight / 2
-    ) {
-      this.isOn = true;
-    }
-  }
-
-  ngOnInit() {}
-
-  onAnimationEvent(event: AnimationEvent) {
-    this.neonEffectIsDone = event.toState === 'on';
-  }
+  readonly careerExps = [
+    {
+      title: 'La Française des Jeux',
+      img: 'la_francaise_des_jeux_logo.jpeg',
+      current: true,
+    },
+    {
+      title: 'Europ Assistance',
+      img: 'europ_assistance_logo.jpeg',
+      current: false,
+    },
+    { title: 'Société Générale', img: 'societe-generale.jpeg', current: false },
+    { title: 'Renault', img: 'renault.jpeg', current: false },
+    { title: 'Kpsule', img: 'kpsule.jpeg', current: false },
+    { title: 'VLIS', img: 'vlis.png', current: false },
+  ];
 }

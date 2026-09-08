@@ -1,23 +1,110 @@
-/* You can add global styles to this file, and also import other style files */
-@import '../../node_modules/bootstrap/scss/bootstrap';
-@import './fonts.scss';
-
-
+@use "./fonts.scss";
 :root {
-    // BOOTSTRAP 
-
-    // body
-    --bs-body-bg: #141C1B;
-    --bs-body-font-family: 'Titillium Web';
-    --bs-body-font-weight: 400;
-
-    // navbar
-    --bs-tertiary-bg-rgb: #141C1B;
-    --bs-emphasis-color-rgb: rgba(85, 232, 183);
-    --bs-navbar-toggler-icon-bg: '';
-
-    // CUSTOM
-    --color-errie-black: #141C1B;
-    --color-medium-aquamarine: #55e8b7;
-    --color-white: #fff;
+  color-scheme: dark;
+  --background: #0f1917;
+  --surface: #16231f;
+  --mint: #a6efcb;
+  --text: #edf2e9;
+  --muted: #a7b7ae;
+  --border: #2d3e35;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 115px;
+}
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: "Titillium Web", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+a,
+button {
+  touch-action: manipulation;
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 6px;
+}
+::selection {
+  background: var(--mint);
+  color: var(--background);
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+.container {
+  width: min(1200px, calc(100% - 96px));
+  margin-inline: auto;
+}
+em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: var(--mint);
+}
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  color: var(--mint);
+}
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mint);
+  flex-shrink: 0;
+}
+.text-link {
+  display: inline-flex;
+  gap: 20px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  font-size: 15px;
+}
+.text-link:hover {
+  color: var(--mint);
+  border-color: var(--mint);
+}
+@media (max-width: 640px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+  html {
+    scroll-padding-top: 95px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

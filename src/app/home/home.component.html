@@ -1,274 +1,202 @@
-<navbar></navbar>
-<div class="container m-auto">
-  <section id="myself" class="myself my-5">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-        <div class="title-container">
-          <h1>Web Developer</h1>
-        </div>
-        <div class="punchline my-5">
-          <p class="punch">
-            Tell me about your inspiration,<br />
-            I will create with mine
-          </p>
-          <p class="line">My Job, a game in which I am the hero</p>
-        </div>
-        <div class="row exp text-center my-5">
-          <div class="text-center col">
-            <p>8</p>
-            <span>YEARS EXPERIENCE</span>
-          </div>
-
-          <div class="text-center col">
-            <p>7</p>
-            <span>HIGH AUDIENCE PROJECTS</span>
-          </div>
-        </div>
+<app-navbar />
+<main id="main-content" class="container">
+  <section id="myself" class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">
+        <span class="status-dot"></span> TECH LEAD / LEAD DEV · FDJ
+      </p>
+      <h1 id="hero-title">
+        Vos idées.<br />Mon terrain<br />de <em>jeu.</em
+        ><span class="asterisk" aria-hidden="true">✳</span>
+      </h1>
+      <p class="hero-intro">
+        Adrien Leteinturier, développeur web.<br />Du premier pixel à la
+        dernière ligne de code,<br class="desktop-break" />
+        je donne vie aux idées avec exigence et créativité.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="#skills"
+          >Découvrir mon univers <span aria-hidden="true">↗</span></a
+        >
+        <a
+          class="text-link"
+          href="https://www.linkedin.com/in/adrien-leteinturier/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Échangeons <span aria-hidden="true">↗</span></a
+        >
       </div>
-      <div
-        class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 text-center"
-      >
-        <div class="people-card my-5">
-          <div class="people-image">
-            <img
-              class="me_img"
-              ngSrc="assets/img/me.png"
-              alt="picture of Adrien Leteinturier - WebDeveloper"
-              title="picture of Adrien Leteinturier - WebDeveloper"
-              fill
-              priority
-            />
-          </div>
-          <div class="people-info">
-            <ul class="people-social">
-              <li>
-                <a
-                  href="https://twitter.com/AdrienDeveloper"
-                  target="_blank"
-                  title="link to twitter of AdrienDeveloper"
-                  ><img
-                    ngSrc="assets/img/twitter.svg"
-                    width="30"
-                    height="30"
-                    class="social-icons"
-                    alt="logo of twitter"
-                    title="logo of twitter"
-                /></a>
-              </li>
-              <li>
-                <a
-                  href="https://www.facebook.com/AdrienDeveloper"
-                  title="link to facebook of AdrienDeveloper"
-                  target="_blank"
-                  ><img
-                    ngSrc="assets/img/facebook.svg"
-                    width="30"
-                    height="30"
-                    class="social-icons"
-                    alt="logo of facebook"
-                    title="logo of facebook"
-                /></a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/adrien-leteinturier/"
-                  target="_blank"
-                  title="link to linkedin of Adrien Leteinturier"
-                  ><img
-                    ngSrc="assets/img/linkedin.svg"
-                    width="27"
-                    height="30"
-                    class="social-icons"
-                    alt="logo of linkedin"
-                    title="logo of linkedin"
-                /></a>
-              </li>
+      <div class="hero-note">
+        <span aria-hidden="true">&lt;/&gt;</span> Le code comme métier. La
+        curiosité comme moteur.
+      </div>
+    </div>
+    <div class="portrait-area">
+      <div class="orbit" aria-hidden="true"></div>
+      <article class="people-card">
+        <div class="card-top">
+          <span>HELLO, I'M ADRIEN</span><span aria-hidden="true">↗</span>
+        </div>
+        <div class="portrait">
+          <img
+            ngSrc="assets/img/me.png"
+            alt="Portrait d’Adrien Leteinturier"
+            fill
+            priority
+            sizes="(max-width: 760px) 80vw, 30vw"
+          />
+        </div>
+        <div class="card-bottom">
+          <strong>Adrien<br />Leteinturier<span>.</span></strong
+          ><span class="card-role">WEB DEVELOPER<br />& CREATIVE MIND</span>
+        </div>
+      </article>
+      <div class="floating-tag">
+        <span class="status-dot"></span> Aujourd’hui chez <strong>FDJ</strong>
+      </div>
+      <span class="portrait-caption">UN PEU DE DESIGN. BEAUCOUP DE CODE.</span>
+    </div>
+  </section>
+  <div class="section-divider">
+    <span>CRÉATIVITÉ × TECHNIQUE</span
+    ><a href="#skills" aria-label="Aller aux compétences"
+      >SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a
+    >
+  </div>
+  <section id="skills" class="skills section" aria-labelledby="skills-title">
+    <div class="section-heading">
+      <p class="eyebrow">01 / MON UNIVERS</p>
+      <h2 id="skills-title">
+        La technique, avec<br />une touche de <em>créativité.</em>
+      </h2>
+    </div>
+    <div class="skills-layout">
+      <div class="skill-cards">
+        @for (skill of skills; track skill.name; let index = $index) {
+          <article class="skill-card">
+            <div class="skill-header">
+              <span class="skill-number">0{{ index + 1 }}</span>
+              <div>
+                <h3>{{ skill.name }}</h3>
+                <p>{{ skill.detail }}</p>
+              </div>
+              <span class="skill-arrow" aria-hidden="true">↗</span>
+            </div>
+            <ul class="tools">
+              @for (tool of skill.tools; track tool.name) {
+                <li>
+                  <img
+                    [ngSrc]="'assets/img/' + tool.image"
+                    alt=""
+                    width="26"
+                    height="26"
+                  /><span>{{ tool.name }}</span>
+                </li>
+              }
             </ul>
-            <span class="people-name">Adrien Leteinturier</span>
-            <p class="people-desc">
-              License Developpeur Web <br />
-              Bac Infographie
-            </p>
-          </div>
-        </div>
+          </article>
+        }
+      </div>
+      <div class="about-copy">
+        <p class="about-lead">
+          Développeur, créatif,<br />et toujours <span>curieux.</span>
+        </p>
+        <p>
+          Moi, c’est Adrien. Passionné par le web, je suis aujourd’hui
+          <strong>tech lead / lead dev chez La Française des Jeux (FDJ)</strong
+          >. Mon fil conducteur : associer la rigueur du développement au
+          plaisir de créer.
+        </p>
+        <p>
+          Un bac en infographie, une licence en développement web : mon parcours
+          m’a donné le goût des interfaces soignées et du code qui les fait
+          vivre. Le front-end est mon terrain de prédilection, avec JavaScript,
+          Angular et React.
+        </p>
+        <p>
+          J’aime aussi passer de l’autre côté de l’écran : Java, Node.js,
+          MongoDB et SQL font partie de ma boîte à outils. HTML, CSS et Sass
+          apportent la touche finale, celle qui transforme une page en
+          expérience.
+        </p>
+        <p>
+          Des projets à forte audience aux nouvelles idées, je garde la même
+          envie : construire, apprendre et partager. Et toujours une bonne dose
+          de plaisir à coder.
+        </p>
+        <a
+          class="text-link"
+          href="https://www.linkedin.com/in/adrien-leteinturier/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Retrouvons-nous sur LinkedIn <span aria-hidden="true">↗</span></a
+        >
       </div>
     </div>
   </section>
-  <section id="skills" class="skills my-5" #skills>
-    <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-        <div
-          class="illustration"
-          [ngStyle]="{
-            border: neonEffectIsDone ? '2px solid #55e8b7' : 'none'
-          }"
-        >
-          <h2
-            [@neonEffect]="isOn ? 'on' : 'off'"
-            (@neonEffect.done)="onAnimationEvent($event)"
-          >
-            Design
-          </h2>
-          <div
-            class="text-center"
-            [ngStyle]="{ opacity: neonEffectIsDone ? 1 : 0 }"
-          >
-            <img
-              ngSrc="assets/img/photoshop.svg"
-              alt="logo of photoshop"
-              title="logo of photoshop"
-              width="70"
-              height="70"
-              priority
-            />
-            <img
-              ngSrc="assets/img/sass.svg"
-              alt="logo of sass"
-              title="logo of sass"
-              width="70"
-              height="70"
-              priority
-            />
-            <img
-              ngSrc="assets/img/html.svg"
-              alt="logo of html"
-              title="logo of html"
-              width="70"
-              height="70"
-              priority
-            />
-          </div>
-        </div>
-        <div
-          class="illustration"
-          [ngStyle]="{
-            border: neonEffectIsDone ? '2px solid #55e8b7' : 'none'
-          }"
-        >
-          <h2
-            [@neonEffect]="isOn ? 'on' : 'off'"
-            (@neonEffect.done)="onAnimationEvent($event)"
-          >
-            Front-end
-          </h2>
-          <div
-            class="text-center"
-            [ngStyle]="{ opacity: neonEffectIsDone ? 1 : 0 }"
-          >
-            <img
-              ngSrc="assets/img/js.svg"
-              alt="logo of javascript"
-              title="logo of javascript"
-              width="70"
-              height="70"
-              priority
-            />
-            <img
-              ngSrc="assets/img/angular.svg"
-              alt="logo of angular"
-              title="logo of angular"
-              width="70"
-              height="70"
-              priority
-            />
-            <img
-              ngSrc="assets/img/react.svg"
-              alt="logo of angular"
-              title="logo of angular"
-              width="70"
-              height="70"
-              priority
-            />
-          </div>
-        </div>
-        <div
-          class="illustration"
-          [ngStyle]="{
-            border: neonEffectIsDone ? '2px solid #55e8b7' : 'none'
-          }"
-        >
-          <h2
-            [@neonEffect]="isOn ? 'on' : 'off'"
-            (@neonEffect.done)="onAnimationEvent($event)"
-          >
-            Back-end
-          </h2>
-          <div
-            class="text-center"
-            [ngStyle]="{ opacity: neonEffectIsDone ? 1 : 0 }"
-          >
-            <img
-              ngSrc="assets/img/node-js.svg"
-              alt="logo of node js"
-              title="logo of node js"
-              width="70"
-              height="70"
-              priority
-            />
-            <img
-              ngSrc="assets/img/nestjs.svg"
-              alt="logo of nestjs"
-              title="logo of nestjs"
-              width="70"
-              height="70"
-              priority
-            />
-            <img
-              ngSrc="assets/img/java.svg"
-              alt="logo of java"
-              title="logo of java"
-              width="70"
-              height="70"
-              priority
-            />
-          </div>
-        </div>
+  <section id="career" class="career section" aria-labelledby="career-title">
+    <div class="section-heading career-heading">
+      <div>
+        <p class="eyebrow">02 / MON PARCOURS</p>
+        <h2 id="career-title">
+          De belles aventures.<br /><em>Du chemin parcouru.</em>
+        </h2>
       </div>
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-        <div
-          [ngStyle]="{
-            opacity: neonEffectIsDone ? '1' : '0'
-          }"
-          class="desc"
-        >
-          <h2 class="mb-5">
-            Multitasking Web Coder: Front-end, Back-end, and a Pinch of Fun!
-          </h2>
+      <p>Des univers différents,<br />la même passion du web.</p>
+    </div>
+    <div class="career-grid">
+      @for (item of careerExps; track item.title) {
+        <article class="career-card" [class.current]="item.current">
+          <div class="company-logo">
+            <img
+              [ngSrc]="'assets/img/' + item.img"
+              alt=""
+              width="72"
+              height="72"
+            />
+          </div>
+          <h3>{{ item.title }}</h3>
           <p>
-            Hello everyone ! 👋 I'm <span>Adrien</span>, a web enthusiast and
-            professional for over 8 years! 🌐✨ With a Baccalaureate in Computer
-            Graphics and a License in Web Development, I am like a code
-            conductor, specialized in the front-end while also being comfortable
-            in the back-end. No need to give you a pompous speech, but I juggle
-            JavaScript, Angular, React, Java, NodeJs, it's my toolbox to make
-            your websites vibrate. 💻🚀<br /><br />
-
-            When it comes to bringing HTML pages to life, I also have fun with a
-            little dose of CSS and Sass to give them some style. And guess what?
-            I'm also a back-end whiz, maneuvering between JAVA, Mongo databases
-            and SQL like a pro.<br /><br />
-
-            I've had the chance to work on big projects, but now it's your
-            project that excites me. For a behind-the-scenes look at my
-            front-end and back-end adventures, take a look at my social media.
-            No nonsense, just code and great ideas! 🤘💻 Ready to make your
-            website pop on all fronts? Let's do this! 🔥🚀
+            {{
+              item.current
+                ? "Tech lead / Lead dev"
+                : "Une étape de mon parcours"
+            }}
           </p>
-        </div>
-      </div>
+          @if (item.current) {
+            <span class="current-label"
+              ><span class="status-dot"></span> AUJOURD’HUI</span
+            >
+          }
+        </article>
+      }
     </div>
   </section>
-  <section id="career" class="career my-5">
-    <div class="row">
-      <h2 class="mb-5">My career</h2>
-      <ng-container *ngFor="let item of careerExps">
-        <div
-          class="exp col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3"
-          [ngStyle]="{ 'background-image': 'url(' + item.img + ')' }"
-        >
-          <h3 hidden>{{ item.title }}</h3>
-        </div>
-      </ng-container>
+  <footer>
+    <div>
+      <a class="footer-name" href="#myself"
+        >Adrien Leteinturier<span>.</span></a
+      >
+      <p>Du code, des idées et un peu de fun.</p>
     </div>
-  </section>
-</div>
+    <nav aria-label="Réseaux sociaux">
+      <a
+        href="https://www.linkedin.com/in/adrien-leteinturier/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >LinkedIn ↗</a
+      ><a
+        href="https://twitter.com/AdrienDeveloper"
+        target="_blank"
+        rel="noopener noreferrer"
+        >X / Twitter ↗</a
+      ><a
+        href="https://www.facebook.com/AdrienDeveloper"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Facebook ↗</a
+      >
+    </nav>
+    <a class="back-top" href="#myself" aria-label="Retour en haut">↑</a>
+  </footer>
+</main>
