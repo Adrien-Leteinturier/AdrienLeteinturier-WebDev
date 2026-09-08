@@ -43,3 +43,7 @@ Thumbs.db
 /.tools
 /.vercel
 /artifacts
+.env
+.env.*
+!.env.example
+firebase-debug.log

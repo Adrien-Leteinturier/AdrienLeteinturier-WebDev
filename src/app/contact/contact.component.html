@@ -1,0 +1,273 @@
+<section id="contact" class="contact" aria-labelledby="contact-title">
+  <div class="contact-intro">
+    <p class="eyebrow">05 / FAISONS CONNAISSANCE</p>
+    <h2 id="contact-title">
+      Votre projet<br />commence par<br /><em>un échange.</em>
+    </h2>
+    <p>
+      Un nouveau site, une refonte ou une idée à préciser ? Racontez-moi votre
+      activité et ce dont vous avez besoin. Quelques lignes suffisent pour
+      commencer.
+    </p>
+    <div class="contact-note">
+      <span aria-hidden="true">↗</span>
+      <p>
+        Un échange direct avec Adrien.<br />Une première prise de contact, sans
+        engagement.
+      </p>
+    </div>
+    <a
+      class="text-link"
+      href="https://www.linkedin.com/in/adrien-leteinturier/"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Vous préférez LinkedIn ? <span aria-hidden="true">↗</span></a
+    >
+  </div>
+  <div class="form-panel">
+    @if (reference()) {
+      <div class="success" role="status" aria-live="polite">
+        <span class="success-icon" aria-hidden="true">✓</span>
+        <h3>Votre demande est enregistrée.</h3>
+        <p>
+          Merci pour ces précisions. Je pourrai m’appuyer dessus pour échanger
+          avec vous.
+        </p>
+        <p class="reference">Votre référence : {{ reference() }}</p>
+        <button
+          type="button"
+          class="secondary"
+          (click)="reference.set(''); prepare()"
+        >
+          Présenter un autre projet
+        </button>
+      </div>
+    } @else {
+      <form
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+        novalidate
+        [attr.aria-busy]="sending()"
+      >
+        <div class="form-heading">
+          <h3>Parlez-moi de votre idée.</h3>
+          <p>Les champs marqués * sont nécessaires.</p>
+        </div>
+        <label for="projectType">Quel type de projet ? *</label>
+        <select
+          id="projectType"
+          formControlName="projectType"
+          [attr.aria-invalid]="invalid('projectType')"
+          aria-describedby="project-error"
+        >
+          <option value="">Choisir une option</option>
+          <option value="wordpress">Création / intégration WordPress</option>
+          <option value="custom">Site sur mesure et formulaires</option>
+          <option value="business-tool">Outil métier léger</option>
+          <option value="redesign">Refonte d’un site existant</option>
+          <option value="advice">J’ai besoin d’en discuter</option>
+        </select>
+        @if (invalid("projectType")) {
+          <p class="field-error" id="project-error">
+            Choisissez le type de projet qui vous ressemble le plus.
+          </p>
+        }
+        <label for="description">Votre activité et votre besoin *</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          rows="5"
+          minlength="30"
+          maxlength="5000"
+          placeholder="Que faites-vous ? À qui s’adresse le site ? Qu’aimeriez-vous améliorer ou permettre à vos visiteurs de faire ?"
+          [attr.aria-invalid]="invalid('description')"
+          aria-describedby="description-hint description-error"
+        ></textarea>
+        <p class="hint" id="description-hint">
+          30 caractères minimum. Ne transmettez pas de mot de passe ou de donnée
+          confidentielle.
+        </p>
+        @if (invalid("description")) {
+          <p class="field-error" id="description-error">
+            Décrivez votre besoin en 30 à 5 000 caractères.
+          </p>
+        }
+        <div class="form-row">
+          <div>
+            <label for="timeline">Le délai souhaité *</label
+            ><select
+              id="timeline"
+              formControlName="timeline"
+              [attr.aria-invalid]="invalid('timeline')"
+              aria-describedby="timeline-error"
+            >
+              <option value="">Choisir une option</option>
+              <option value="soon">Dès que possible</option>
+              <option value="1-3-months">Dans 1 à 3 mois</option>
+              <option value="3-6-months">Dans 3 à 6 mois</option>
+              <option value="flexible">Flexible / à définir</option>
+            </select>
+            @if (invalid("timeline")) {
+              <p class="field-error" id="timeline-error">
+                Précisez le délai envisagé.
+              </p>
+            }
+          </div>
+          <div>
+            <label for="budget">Budget indicatif <span>(optionnel)</span></label
+            ><select id="budget" formControlName="budget">
+              <option value="">À discuter</option>
+              <option value="under-1500">Moins de 1 500 €</option>
+              <option value="1500-3000">1 500 à 3 000 €</option>
+              <option value="3000-6000">3 000 à 6 000 €</option>
+              <option value="over-6000">Plus de 6 000 €</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="name">Votre nom *</label
+            ><input
+              id="name"
+              formControlName="name"
+              autocomplete="name"
+              maxlength="100"
+              [attr.aria-invalid]="invalid('name')"
+              aria-describedby="name-error"
+            />
+            @if (invalid("name")) {
+              <p class="field-error" id="name-error">
+                Indiquez votre nom (2 à 100 caractères).
+              </p>
+            }
+          </div>
+          <div>
+            <label for="email">Votre e-mail *</label
+            ><input
+              id="email"
+              formControlName="email"
+              type="email"
+              autocomplete="email"
+              maxlength="254"
+              [attr.aria-invalid]="invalid('email')"
+              aria-describedby="email-error"
+            />
+            @if (invalid("email")) {
+              <p class="field-error" id="email-error">
+                Indiquez une adresse e-mail valide.
+              </p>
+            }
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="company">Entreprise <span>(optionnel)</span></label
+            ><input
+              id="company"
+              formControlName="company"
+              autocomplete="organization"
+              maxlength="120"
+            />
+          </div>
+          <div>
+            <label for="phone">Téléphone <span>(optionnel)</span></label
+            ><input
+              id="phone"
+              formControlName="phone"
+              type="tel"
+              autocomplete="tel"
+              maxlength="30"
+              [attr.aria-invalid]="invalid('phone')"
+              aria-describedby="phone-error"
+            />
+            @if (invalid("phone")) {
+              <p class="field-error" id="phone-error">
+                Vérifiez le numéro de téléphone.
+              </p>
+            }
+          </div>
+        </div>
+        <label for="website">Votre site actuel <span>(optionnel)</span></label
+        ><input
+          id="website"
+          formControlName="website"
+          type="url"
+          placeholder="https://"
+          autocomplete="url"
+          maxlength="300"
+        />
+        <div class="honeypot" aria-hidden="true">
+          <label for="companyFax">Laisser ce champ vide</label
+          ><input
+            id="companyFax"
+            formControlName="companyFax"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+        <label class="checkbox" for="privacy"
+          ><input
+            id="privacy"
+            formControlName="privacy"
+            type="checkbox"
+            [attr.aria-invalid]="invalid('privacy')"
+          /><span
+            >J’ai lu les
+            <a href="#privacy-notice">informations sur mes données</a> et
+            j’accepte d’être recontacté au sujet de cette demande. *</span
+          ></label
+        >
+        @if (invalid("privacy")) {
+          <p class="field-error">
+            Votre accord est nécessaire pour être recontacté.
+          </p>
+        }
+        @if (error()) {
+          <p class="form-error" role="alert">{{ error() }}</p>
+        }
+        @if (loading()) {
+          <p class="availability" role="status">
+            Vérification de la disponibilité de l’envoi…
+          </p>
+        } @else if (!available()) {
+          <p class="availability" role="status">
+            L’envoi du formulaire est momentanément indisponible. Vous pouvez me
+            contacter sur
+            <a
+              href="https://www.linkedin.com/in/adrien-leteinturier/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn ↗</a
+            >.
+          </p>
+          <button type="button" class="retry" (click)="prepare()">
+            Réessayer la connexion
+          </button>
+        }
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="sending() || !available()"
+        >
+          {{ sending() ? "Envoi en cours…" : "Envoyer ma demande"
+          }}<span aria-hidden="true">↗</span>
+        </button>
+        <p class="form-footnote">
+          Vos coordonnées servent uniquement à échanger sur votre projet.
+        </p>
+      </form>
+    }
+    <details id="privacy-notice">
+      <summary>Comment mes données sont-elles utilisées ?</summary>
+      <p>
+        Adrien Leteinturier utilise les informations transmises pour comprendre
+        votre besoin et vous recontacter. Les demandes sont destinées à Adrien
+        et stockées dans un espace Firebase privé ; une copie est adressée à sa
+        messagerie pour leur suivi. Aucun abonnement à une newsletter n’est
+        créé. Pour demander l’accès, la rectification ou la suppression de votre
+        demande, contactez Adrien via son profil LinkedIn en précisant votre
+        référence.
+      </p>
+    </details>
+  </div>
+</section>

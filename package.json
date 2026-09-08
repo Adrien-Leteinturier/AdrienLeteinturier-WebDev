@@ -8,8 +8,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=false",
-    "format": "prettier --write \"src/**/*.{ts,html,scss}\" \"*.json\"",
-    "format:check": "prettier --check \"src/**/*.{ts,html,scss}\" \"*.json\""
+    "format": "prettier --write \"src/**/*.{ts,html,scss}\" \"*.json\" \"api/*.mjs\" \"server/*.mjs\"",
+    "format:check": "prettier --check \"src/**/*.{ts,html,scss}\" \"*.json\" \"api/*.mjs\" \"server/*.mjs\"",
+    "test:server": "node --test server/*.test.mjs"
   },
   "engines": {
     "node": "^24.15.0"
@@ -18,6 +19,7 @@
     "@angular/common": "^22.1.5",
     "@angular/compiler": "^22.1.5",
     "@angular/core": "^22.1.5",
+    "@angular/forms": "^22.1.5",
     "@angular/platform-browser": "^22.1.5",
     "rxjs": "~7.8.2",
     "tslib": "^2.8.1"
@@ -26,9 +28,9 @@
     "@angular/build": "^22.1.7",
     "@angular/cli": "^22.1.7",
     "@angular/compiler-cli": "^22.1.5",
-    "typescript": "~6.0.3",
-    "vitest": "^4.1.11",
     "jsdom": "^30.0.1",
-    "prettier": "^3.8.1"
+    "prettier": "^3.8.1",
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.11"
   }
 }

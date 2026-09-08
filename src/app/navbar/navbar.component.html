@@ -15,15 +15,11 @@
       {{ isMenuOpened() ? "Fermer ×" : "Menu +" }}
     </button>
     <div id="main-navigation" [class.open]="isMenuOpened()">
-      <a href="#myself" (click)="closeMenu()">À propos</a
-      ><a href="#skills" (click)="closeMenu()">Compétences</a
-      ><a href="#career" (click)="closeMenu()">Parcours</a
-      ><a
-        class="nav-contact"
-        href="https://www.linkedin.com/in/adrien-leteinturier/"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Discutons <span aria-hidden="true">↗</span></a
+      <a href="#services" (click)="closeMenu()">Services</a
+      ><a href="#work" (click)="closeMenu()">Réalisations</a
+      ><a href="#about" (click)="closeMenu()">À propos</a
+      ><a class="nav-contact" href="#contact" (click)="closeMenu()"
+        >Votre projet <span aria-hidden="true">↗</span></a
       >
     </div>
   </nav>

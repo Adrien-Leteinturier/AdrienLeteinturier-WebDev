@@ -1,9 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { ContactComponent } from '../contact/contact.component';
 @Component({
   selector: 'app-home',
-  imports: [NgOptimizedImage, NavbarComponent],
+  imports: [NgOptimizedImage, NavbarComponent, ContactComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
