@@ -1,6 +1,6 @@
 # Vitrine freelance d’Adrien Leteinturier
 
-Angular 22, Node.js 24 LTS. Identité forêt/menthe, services WordPress et sur mesure, portfolio personnel, parcours professionnel et formulaire custom.
+Angular 22, Node.js 24.20.0 LTS et npm 12.0.2. Identité forêt/menthe, services WordPress et sur mesure, portfolio personnel, parcours professionnel et formulaire custom.
 
 ## Commandes
 
@@ -38,3 +38,9 @@ Le destinataire personnel a été vérifié via Gmail. Il n’est pas inscrit da
 `vercel.json` réserve `/api/contact` à la fonction Node et sert Angular sur les autres routes. Le site déjà en production reste inchangé tant que stockage et notification ne sont pas finalisés et testés. La nouvelle vitrine est destinée à un déploiement preview dans cet état.
 
 Aucun push GitHub ni automatisation de réseaux sociaux ne sont réalisés.
+
+## Versions des outils
+
+La version locale de Node est fixée par .nvmrc (24.20.0), npm par packageManager (12.0.2), avec leurs contraintes dans engines. Sur Vercel, la branche Node 24 est sélectionnée via engines ; Vercel gère sa version mineure. La commande d’installation affiche la version de Node puis exécute explicitement npm@12.0.2 ci.
+
+Le runtime partagé de Codex n’est pas modifié. La validation locale utilise un exécutable Node isolé dans .tools/, non versionné. TypeScript 6.0.3 et Vitest 4.1.11 restent les versions compatibles avec Angular Build 22 ; leurs nouvelles versions majeures ne satisfont pas ses dépendances homologues.
