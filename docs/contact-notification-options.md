@@ -1,6 +1,8 @@
 # Notification Gmail — décision technique préparée
 
-État au 12 septembre 2026 : formulaire fermé, accès Firebase et transport serveur non configurés. Ce document décrit la suite ; il ne constitue pas une intégration livrée.
+État au 12 septembre 2026 : formulaire fermé. L'inspection de Chrome confirme l'accès au projet `adrien-leteinturier-webdev`, en formule Spark, sans base Firestore créée. L'accès navigateur ne fournit pas une identité serveur à Vercel.
+
+Le projet Vercel possède déjà `SENDGRID_API_KEY` pour tous les environnements ; sa valeur n'a pas été affichée. Le transport `server/sendgrid-transport.mjs` est préparé et testé avec des réponses simulées. L'expéditeur vérifié, la validité de la clé et la réception réelle restent à vérifier. Ce module n'est pas encore branché dans l'API et n'active pas le formulaire.
 
 ## Option à privilégier
 
@@ -29,4 +31,4 @@ Si le projet dispose déjà de fonctions et d'un plan adapté, un traitement Fir
 
 ## Seules informations à demander
 
-Identifier le projet Firebase à utiliser, puis permettre son authentification dans l'environnement. Inspecter ensuite la base, les ressources et le transport existants. Si aucun transport n'est disponible, guider Adrien vers la configuration sécurisée du compte d'envoi, en lui demandant seulement l'autorisation ou l'action de connexion indispensable. Ne pas lui faire arbitrer entre bibliothèques techniques.
+Le projet est identifié et la session Chrome suffit pour sa console : aucune connexion CLI supplémentaire n'est imposée. Le choix de l'emplacement immuable de la nouvelle base est demandé (Paris proposé). Il faut ensuite autoriser/configurer l'identité serveur Firebase dans Vercel et vérifier l'expéditeur SendGrid existant. Ne pas demander de clé dans le chat ni faire arbitrer entre bibliothèques techniques.
