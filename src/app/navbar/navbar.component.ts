@@ -1,17 +1,16 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 @Component({
-  selector: 'navbar',
-  standalone: true,
-  imports: [CommonModule],
+  selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  isMenuOpened = false;
-
+  readonly isMenuOpened = signal(false);
   toggleMenu() {
-    this.isMenuOpened = !this.isMenuOpened;
+    this.isMenuOpened.update((open) => !open);
+  }
+  closeMenu() {
+    this.isMenuOpened.set(false);
   }
 }
