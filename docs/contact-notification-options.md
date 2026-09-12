@@ -2,7 +2,9 @@
 
 État au 12 septembre 2026 : formulaire fermé. L'inspection de Chrome confirme l'accès au projet `adrien-leteinturier-webdev`, en formule Spark, sans base Firestore créée. L'accès navigateur ne fournit pas une identité serveur à Vercel.
 
-Le projet Vercel possède déjà `SENDGRID_API_KEY` pour tous les environnements ; sa valeur n'a pas été affichée. Le transport `server/sendgrid-transport.mjs` est préparé et testé avec des réponses simulées. L'expéditeur vérifié, la validité de la clé et la réception réelle restent à vérifier. Ce module n'est pas encore branché dans l'API et n'active pas le formulaire.
+Le projet Vercel possède une ancienne variable `SENDGRID_API_KEY`, mais Adrien indique ne pas avoir de compte SendGrid : sa provenance n'est pas établie, elle n'est ni utilisée, ni testée, ni modifiée. Le module SendGrid a été remplacé par `server/gmail-transport.mjs`, testé sans réseau. Il n'est pas encore branché dans l'API et n'active pas le formulaire.
+
+Google demande une validation de l'identité par clé d'accès avant d'afficher la page des mots de passe d'application. Cette vérification doit être effectuée par Adrien dans Chrome. L'éligibilité du compte aux mots de passe d'application reste donc inconnue. Si cette option est proposée, créer le mot de passe et le saisir directement comme secret serveur Vercel `GMAIL_APP_PASSWORD`, jamais dans la conversation. Les autres paramètres prévus sont `GMAIL_USER` et `CONTACT_TO_EMAIL`, tous côté serveur. La création d'un nouvel identifiant reste une étape prise en main par l'utilisateur.
 
 ## Option à privilégier
 
@@ -31,4 +33,4 @@ Si le projet dispose déjà de fonctions et d'un plan adapté, un traitement Fir
 
 ## Seules informations à demander
 
-Le projet est identifié et la session Chrome suffit pour sa console : aucune connexion CLI supplémentaire n'est imposée. Le choix de l'emplacement immuable de la nouvelle base est demandé (Paris proposé). Il faut ensuite autoriser/configurer l'identité serveur Firebase dans Vercel et vérifier l'expéditeur SendGrid existant. Ne pas demander de clé dans le chat ni faire arbitrer entre bibliothèques techniques.
+Le projet est identifié et la session Chrome suffit pour sa console : aucune connexion CLI supplémentaire n'est imposée. Standard est retenu pour ce simple stockage, sans création effectuée. Le choix de l'emplacement immuable de la nouvelle base est demandé (Paris proposé). Il faut ensuite autoriser/configurer l'identité serveur Firebase dans Vercel et terminer la configuration Gmail ci-dessus. Ne pas demander de clé dans le chat ni faire arbitrer entre bibliothèques techniques.
