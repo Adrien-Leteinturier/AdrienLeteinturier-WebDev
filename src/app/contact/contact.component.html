@@ -34,11 +34,7 @@
           avec vous.
         </p>
         <p class="reference">Votre référence : {{ reference() }}</p>
-        <button
-          type="button"
-          class="secondary"
-          (click)="reference.set(''); prepare()"
-        >
+        <button type="button" class="secondary" (click)="reference.set('')">
           Présenter un autre projet
         </button>
       </div>
@@ -225,30 +221,7 @@
         @if (error()) {
           <p class="form-error" role="alert">{{ error() }}</p>
         }
-        @if (loading()) {
-          <p class="availability" role="status">
-            Vérification de la disponibilité de l’envoi…
-          </p>
-        } @else if (!available()) {
-          <p class="availability" role="status">
-            L’envoi du formulaire est momentanément indisponible. Vous pouvez me
-            contacter sur
-            <a
-              href="https://www.linkedin.com/in/adrien-leteinturier/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >LinkedIn ↗</a
-            >.
-          </p>
-          <button type="button" class="retry" (click)="prepare()">
-            Réessayer la connexion
-          </button>
-        }
-        <button
-          type="submit"
-          class="submit-button"
-          [disabled]="sending() || !available()"
-        >
+        <button type="submit" class="submit-button" [disabled]="sending()">
           {{ sending() ? "Envoi en cours…" : "Envoyer ma demande"
           }}<span aria-hidden="true">↗</span>
         </button>

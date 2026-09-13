@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   inject,
   signal,
 } from '@angular/core';
@@ -16,12 +15,9 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: './contact.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
   private readonly http = inject(HttpClient);
   private readonly fb = inject(FormBuilder);
-  private token = '';
-  readonly loading = signal(true);
-  readonly available = signal(false);
   readonly sending = signal(false);
   readonly error = signal('');
   readonly reference = signal('');
@@ -55,45 +51,23 @@ export class ContactComponent implements OnInit {
     privacy: [false, Validators.requiredTrue],
   });
 
-  ngOnInit() {
-    void this.prepare();
-  }
-
-  async prepare() {
-    this.loading.set(true);
-    this.available.set(false);
-    try {
-      const result = await firstValueFrom(
-        this.http.get<{ available: boolean; token?: string }>('/api/contact'),
-      );
-      if (result.available && result.token) {
-        this.token = result.token;
-        this.available.set(true);
-      }
-    } catch {
-      this.available.set(false);
-    } finally {
-      this.loading.set(false);
-    }
-  }
-
   invalid(field: keyof typeof this.form.controls) {
     const control = this.form.controls[field];
     return control.invalid && control.touched;
   }
 
   async submit() {
-    if (this.sending() || !this.available()) return;
+    if (this.sending()) return;
     this.form.markAllAsTouched();
     if (this.form.invalid) return;
     this.sending.set(true);
     this.error.set('');
     try {
       const result = await firstValueFrom(
-        this.http.post<{ id: string; stored: boolean }>('/api/contact', {
-          ...this.form.getRawValue(),
-          token: this.token,
-        }),
+        this.http.post<{ id: string; stored: boolean }>(
+          '/api/contact',
+          this.form.getRawValue(),
+        ),
       );
       if (!result.stored || !result.id) throw new Error('Unconfirmed storage');
       this.reference.set(result.id);
@@ -107,7 +81,6 @@ export class ContactComponent implements OnInit {
             ? 'Vérifiez les champs et réessayez dans quelques secondes. Votre message est conservé dans le formulaire.'
             : 'L’envoi n’a pas pu être confirmé. Réessayez ou contactez-moi sur LinkedIn.',
       );
-      if (status === 400) await this.prepare();
     } finally {
       this.sending.set(false);
     }

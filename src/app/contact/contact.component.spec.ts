@@ -6,7 +6,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { ContactComponent } from './contact.component';
 describe('Contact form', () => {
-  async function setup(available = true) {
+  async function setup() {
     await TestBed.configureTestingModule({
       imports: [ContactComponent],
       providers: [provideHttpClient(), provideHttpClientTesting()],
@@ -14,13 +14,7 @@ describe('Contact form', () => {
     const fixture = TestBed.createComponent(ContactComponent);
     const http = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
-    http
-      .expectOne('/api/contact')
-      .flush(
-        available
-          ? { available: true, token: 'test-token' }
-          : { available: false },
-      );
+    http.expectNone('/api/contact');
     await fixture.whenStable();
     fixture.detectChanges();
     return { fixture, http, component: fixture.componentInstance };
@@ -39,13 +33,10 @@ describe('Contact form', () => {
     companyFax: '',
     privacy: true,
   };
-  it('disables submission when backend is unavailable', async () => {
-    const { fixture, http } = await setup(false);
+  it('allows submission without a preparation request', async () => {
+    const { fixture, http } = await setup();
     expect(fixture.nativeElement.querySelector('[type=submit]').disabled).toBe(
-      true,
-    );
-    expect(fixture.nativeElement.textContent).toContain(
-      'momentanément indisponible',
+      false,
     );
     http.verify();
   });
@@ -62,7 +53,7 @@ describe('Contact form', () => {
     const pending = component.submit();
     await component.submit();
     const req = http.expectOne((r) => r.method === 'POST');
-    expect(req.request.body.token).toBe('test-token');
+    expect(req.request.body).toEqual(valid);
     req.flush(
       { error: 'CONTACT_UNAVAILABLE' },
       { status: 503, statusText: 'Unavailable' },
@@ -71,6 +62,23 @@ describe('Contact form', () => {
     expect(component.form.controls.description.value).toBe(valid.description);
     expect(component.reference()).toBe('');
     expect(component.error()).toContain('pas pu être confirmé');
+    http.verify();
+  });
+  it('preserves fields after a validation error without preparing again', async () => {
+    const { component, http } = await setup();
+    component.form.setValue(valid);
+    const pending = component.submit();
+    http
+      .expectOne((r) => r.method === 'POST')
+      .flush(
+        { error: 'INVALID_CONTACT' },
+        { status: 400, statusText: 'Bad Request' },
+      );
+    await pending;
+    expect(component.form.getRawValue()).toEqual(valid);
+    expect(component.sending()).toBe(false);
+    expect(component.error()).not.toBe('');
+    http.expectNone('/api/contact');
     http.verify();
   });
   it('shows success only for confirmed storage, without claiming Gmail delivery', async () => {
