@@ -16,13 +16,8 @@ const server = createServer(async (req, res) => {
     return res.status(404).json({ error: "Route inconnue" });
   }
 
-  // Permet de tester submit() sans implémenter la préparation de production.
-  if (req.method === "GET") {
-    return res.json({ available: true, token: "local-test" });
-  }
   if (req.method !== "POST") {
-    res.setHeader("Allow", "GET, POST");
-    return res.status(405).json({ error: "Méthode non autorisée" });
+    return handler(req, res);
   }
 
   try {

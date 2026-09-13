@@ -1,9 +1,24 @@
 import nodemailer from "nodemailer";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(2).max(100),
+  email: z.email().max(254),
+  description: z.string().trim().min(30).max(5000),
+  projectType: z.string().trim().min(1).max(100),
+  timeline: z.string().trim().min(1).max(100),
+  company: z.string().max(120).optional(),
+  phone: z.string().max(30).optional(),
+  budget: z.string().max(100).optional(),
+  website: z.string().max(300).optional(),
+  privacy: z.literal(true),
+  companyFax: z.literal("").optional(),
+});
 
 export function createContactHandler() {
   const gmailPassword = process.env.GMAIL_PASSWORD;
 
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: "adrienleteinturier@gmail.com",
@@ -12,10 +27,29 @@ export function createContactHandler() {
   });
 
   return async function handler(req, res) {
+    if (req.method !== "POST") {
+      res.setHeader("Allow", "POST");
+      return res.status(405).json({ error: "METHOD_NOT_ALLOWED" });
+    }
+
+    const contentType = req.headers?.["content-type"]
+      ?.split(";")[0]
+      .trim()
+      .toLowerCase();
+    if (contentType !== "application/json") {
+      return res.status(415).json({ error: "JSON_REQUIRED" });
+    }
+
+    const result = contactSchema.safeParse(req.body);
+    if (!result.success) {
+      return res.status(400).json({ error: "INVALID_CONTACT" });
+    }
+    const contact = result.data;
+
     const mailOptions = {
       from: "adrienleteinturier@gmail.com",
       to: "adrienleteinturier@gmail.com",
-      replyTo: req.body.email,
+      replyTo: contact.email,
       subject: "Nouvelle demande de contact — Portfolio",
       text: `
         Bonjour Adrien,
@@ -23,19 +57,19 @@ export function createContactHandler() {
         Une nouvelle demande a été envoyée depuis votre formulaire de contact.
 
         COORDONNÉES
-        Nom : ${req.body.name}
-        E-mail : ${req.body.email}
-        Entreprise : ${req.body.company || "Non renseignée"}
-        Téléphone : ${req.body.phone || "Non renseigné"}
+        Nom : ${contact.name}
+        E-mail : ${contact.email}
+        Entreprise : ${contact.company || "Non renseignée"}
+        Téléphone : ${contact.phone || "Non renseigné"}
 
         PROJET
-        Type : ${req.body.projectType}
-        Délai souhaité : ${req.body.timeline}
-        Budget : ${req.body.budget || "À discuter"}
-        Site actuel : ${req.body.website || "Non renseigné"}
+        Type : ${contact.projectType}
+        Délai souhaité : ${contact.timeline}
+        Budget : ${contact.budget || "À discuter"}
+        Site actuel : ${contact.website || "Non renseigné"}
 
         DESCRIPTION DU BESOIN
-        ${req.body.description}
+        ${contact.description}
 
         Vous pouvez répondre directement à ce message pour contacter cette personne.
             `.trim(),
