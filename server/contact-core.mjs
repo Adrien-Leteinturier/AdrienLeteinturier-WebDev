@@ -15,7 +15,7 @@ const contactSchema = z.object({
 });
 
 export function createContactHandler() {
-  const gmailPassword = process.env.GMAIL_PASSWORD;
+  const gmailPassword = process.env.GMAIL_APP_PASSWORD;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
