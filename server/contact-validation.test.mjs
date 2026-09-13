@@ -21,14 +21,29 @@ test("validates requests before calling the mail transport", async (t) => {
   t.after(() => transport.mock.restore());
   const handler = createContactHandler();
 
-  async function request(body, method = "POST", contentType = "application/json") {
+  async function request(
+    body,
+    method = "POST",
+    contentType = "application/json",
+  ) {
     const res = {
       headers: {},
-      setHeader(name, value) { this.headers[name] = value; },
-      status(code) { this.code = code; return this; },
-      json(data) { this.data = data; return this; },
+      setHeader(name, value) {
+        this.headers[name] = value;
+      },
+      status(code) {
+        this.code = code;
+        return this;
+      },
+      json(data) {
+        this.data = data;
+        return this;
+      },
     };
-    await handler({ method, headers: { "content-type": contentType }, body }, res);
+    await handler(
+      { method, headers: { "content-type": contentType }, body },
+      res,
+    );
     return res;
   }
 
@@ -38,7 +53,11 @@ test("validates requests before calling the mail transport", async (t) => {
   assert.equal((await request(valid, "POST", "text/plain")).code, 415);
 
   for (const body of [
-    undefined, null, [], "{}", {},
+    undefined,
+    null,
+    [],
+    "{}",
+    {},
     { ...valid, email: "invalid" },
     { ...valid, email: "a@example.com\r\nBcc: other@example.com" },
     { ...valid, description: "short" },
@@ -50,7 +69,11 @@ test("validates requests before calling the mail transport", async (t) => {
   }
   assert.equal(messages.length, 0);
 
-  await request({ ...valid, name: "  Prospect Test  " }, "POST", "application/json; charset=utf-8");
+  await request(
+    { ...valid, name: "  Prospect Test  " },
+    "POST",
+    "application/json; charset=utf-8",
+  );
   assert.equal(messages.length, 1);
   assert.equal(messages[0].replyTo, valid.email);
   assert.match(messages[0].text, /Nom : Prospect Test\n/);
