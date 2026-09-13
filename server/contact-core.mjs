@@ -2,15 +2,15 @@ import nodemailer from "nodemailer";
 import { z } from "zod";
 
 const contactSchema = z.object({
-  name: z.string().trim().min(2).max(100),
-  email: z.email().max(254),
-  description: z.string().trim().min(30).max(5000),
-  projectType: z.string().trim().min(1).max(100),
-  timeline: z.string().trim().min(1).max(100),
-  company: z.string().max(120).optional(),
-  phone: z.string().max(30).optional(),
-  budget: z.string().max(100).optional(),
-  website: z.string().max(300).optional(),
+  name: z.string().min(1).trim(),
+  email: z.email({ pattern: z.regexes.html5Email }),
+  description: z.string().min(1).trim(),
+  projectType: z.string().min(1),
+  timeline: z.string().min(1),
+  company: z.string().optional(),
+  phone: z.string().optional(),
+  budget: z.string().optional(),
+  website: z.string().optional(),
   privacy: z.literal(true),
   companyFax: z.literal("").optional(),
 });
@@ -42,7 +42,10 @@ export function createContactHandler() {
 
     const result = contactSchema.safeParse(req.body);
     if (!result.success) {
-      return res.status(400).json({ error: "INVALID_CONTACT" });
+      return res.status(400).json({
+        error: "INVALID_CONTACT",
+        fields: z.flattenError(result.error).fieldErrors,
+      });
     }
     const contact = result.data;
 

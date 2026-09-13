@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { regexes } from 'zod/v4/core';
 
 @Component({
   selector: 'app-contact',
@@ -23,30 +24,14 @@ export class ContactComponent {
   readonly reference = signal('');
   readonly form = this.fb.nonNullable.group({
     projectType: ['', Validators.required],
-    name: [
-      '',
-      [Validators.required, Validators.minLength(2), Validators.maxLength(100)],
-    ],
-    email: [
-      '',
-      [Validators.required, Validators.email, Validators.maxLength(254)],
-    ],
-    company: ['', Validators.maxLength(120)],
-    phone: [
-      '',
-      [Validators.maxLength(30), Validators.pattern(/^[+()\d .-]*$/)],
-    ],
-    description: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(30),
-        Validators.maxLength(5000),
-      ],
-    ],
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.pattern(regexes.html5Email)]],
+    company: [''],
+    phone: [''],
+    description: ['', Validators.required],
     timeline: ['', Validators.required],
     budget: [''],
-    website: ['', Validators.maxLength(300)],
+    website: [''],
     companyFax: [''],
     privacy: [false, Validators.requiredTrue],
   });
@@ -78,7 +63,7 @@ export class ContactComponent {
         status === 429
           ? 'Vous avez envoyé plusieurs demandes récemment. Réessayez plus tard ou contactez-moi sur LinkedIn.'
           : status === 400
-            ? 'Vérifiez les champs et réessayez dans quelques secondes. Votre message est conservé dans le formulaire.'
+            ? 'Vérifiez les champs et réessayez dans quelques secondes.'
             : 'L’envoi n’a pas pu être confirmé. Réessayez ou contactez-moi sur LinkedIn.',
       );
     } finally {

@@ -73,19 +73,16 @@
           id="description"
           formControlName="description"
           rows="5"
-          minlength="30"
-          maxlength="5000"
           placeholder="Que faites-vous ? À qui s’adresse le site ? Qu’aimeriez-vous améliorer ou permettre à vos visiteurs de faire ?"
           [attr.aria-invalid]="invalid('description')"
           aria-describedby="description-hint description-error"
         ></textarea>
         <p class="hint" id="description-hint">
-          30 caractères minimum. Ne transmettez pas de mot de passe ou de donnée
-          confidentielle.
+          Ne transmettez pas de mot de passe ou de donnée confidentielle.
         </p>
         @if (invalid("description")) {
           <p class="field-error" id="description-error">
-            Décrivez votre besoin en 30 à 5 000 caractères.
+            Décrivez votre besoin.
           </p>
         }
         <div class="form-row">
@@ -127,14 +124,11 @@
               id="name"
               formControlName="name"
               autocomplete="name"
-              maxlength="100"
               [attr.aria-invalid]="invalid('name')"
               aria-describedby="name-error"
             />
             @if (invalid("name")) {
-              <p class="field-error" id="name-error">
-                Indiquez votre nom (2 à 100 caractères).
-              </p>
+              <p class="field-error" id="name-error">Indiquez votre nom.</p>
             }
           </div>
           <div>
@@ -144,7 +138,6 @@
               formControlName="email"
               type="email"
               autocomplete="email"
-              maxlength="254"
               [attr.aria-invalid]="invalid('email')"
               aria-describedby="email-error"
             />
@@ -162,7 +155,6 @@
               id="company"
               formControlName="company"
               autocomplete="organization"
-              maxlength="120"
             />
           </div>
           <div>
@@ -172,15 +164,7 @@
               formControlName="phone"
               type="tel"
               autocomplete="tel"
-              maxlength="30"
-              [attr.aria-invalid]="invalid('phone')"
-              aria-describedby="phone-error"
             />
-            @if (invalid("phone")) {
-              <p class="field-error" id="phone-error">
-                Vérifiez le numéro de téléphone.
-              </p>
-            }
           </div>
         </div>
         <label for="website">Votre site actuel <span>(optionnel)</span></label
@@ -190,7 +174,6 @@
           type="url"
           placeholder="https://"
           autocomplete="url"
-          maxlength="300"
         />
         <div class="honeypot" aria-hidden="true">
           <label for="companyFax">Laisser ce champ vide</label
