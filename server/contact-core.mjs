@@ -12,7 +12,6 @@ const contactSchema = z.object({
   budget: z.string().optional(),
   website: z.string().optional(),
   privacy: z.literal(true),
-  companyFax: z.literal("").optional(),
 });
 
 export function createContactHandler() {

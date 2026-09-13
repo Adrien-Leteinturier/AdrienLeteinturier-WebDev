@@ -14,7 +14,6 @@ const valid = {
   projectType: "wordpress",
   timeline: "flexible",
   privacy: true,
-  companyFax: "",
 };
 
 test("validates requests before calling the mail transport", async (t) => {
@@ -66,7 +65,6 @@ test("validates requests before calling the mail transport", async (t) => {
     { ...valid, email: "a@example.com\r\nBcc: other@example.com" },
     { ...valid, description: "" },
     { ...valid, privacy: false },
-    { ...valid, companyFax: "spam" },
     { ...valid, company: {} },
   ]) {
     assert.equal((await request(body)).code, 400);
@@ -157,6 +155,11 @@ test("validates requests before calling the mail transport", async (t) => {
     budget: "",
   });
   assert.notEqual(emptyOptionals.code, 400);
+  // Les anciens formulaires peuvent encore envoyer ce champ : il est ignore.
+  assert.notEqual(
+    (await request({ ...valid, companyFax: "autofill" })).code,
+    400,
+  );
   const invalid = await request({
     ...valid,
     email: "invalid",

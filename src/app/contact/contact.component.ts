@@ -32,7 +32,6 @@ export class ContactComponent {
     timeline: ['', Validators.required],
     budget: [''],
     website: [''],
-    companyFax: [''],
     privacy: [false, Validators.requiredTrue],
   });
 

@@ -30,7 +30,6 @@ describe('Contact form', () => {
     timeline: 'flexible',
     budget: '',
     website: '',
-    companyFax: '',
     privacy: true,
   };
   it('allows submission without a preparation request', async () => {

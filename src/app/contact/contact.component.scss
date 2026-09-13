@@ -127,13 +127,6 @@ details a,
   text-underline-offset: 3px;
   color: var(--mint);
 }
-.honeypot {
-  position: absolute;
-  left: -10000px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
 .field-error,
 .form-error {
   color: #ffc4b8;
