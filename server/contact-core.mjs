@@ -77,12 +77,12 @@ export function createContactHandler() {
             `.trim(),
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
-    });
+    try {
+      await transporter.sendMail(mailOptions);
+      return res.status(200).json({ sent: true });
+    } catch (error) {
+      console.error("Contact email failed:", error.code);
+      return res.status(502).json({ error: "EMAIL_SEND_FAILED" });
+    }
   };
 }

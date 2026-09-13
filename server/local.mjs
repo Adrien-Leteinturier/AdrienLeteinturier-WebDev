@@ -37,9 +37,9 @@ const server = createServer(async (req, res) => {
     }
 
     await handler(req, res);
-    // Termine la requête si ton handler ne renvoie pas encore de réponse.
+    // Signale un oubli de réponse dans le handler.
     if (!res.writableEnded) {
-      res.json({ stored: false, message: "Test local : handler exécuté." });
+      res.status(500).json({ error: "HANDLER_NO_RESPONSE" });
     }
   } catch (error) {
     console.error(error);
@@ -53,5 +53,4 @@ const server = createServer(async (req, res) => {
 
 server.listen(3000, "127.0.0.1", () => {
   console.log("API locale : http://127.0.0.1:3000/api/contact");
-  console.log("Les données reçues apparaissent dans ce terminal.");
 });

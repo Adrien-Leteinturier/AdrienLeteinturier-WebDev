@@ -59,7 +59,7 @@ describe('Contact form', () => {
     );
     await pending;
     expect(component.form.controls.description.value).toBe(valid.description);
-    expect(component.reference()).toBe('');
+    expect(component.sent()).toBe(false);
     expect(component.error()).toContain('pas pu être confirmé');
     http.verify();
   });
@@ -80,20 +80,32 @@ describe('Contact form', () => {
     http.expectNone('/api/contact');
     http.verify();
   });
-  it('shows success only for confirmed storage, without claiming Gmail delivery', async () => {
+  it('shows success after email submission is confirmed', async () => {
     const { component, http, fixture } = await setup();
     component.form.setValue(valid);
     const pending = component.submit();
-    http
-      .expectOne((r) => r.method === 'POST')
-      .flush({ stored: true, id: 'TEST-REFERENCE' });
+    http.expectOne((r) => r.method === 'POST').flush({ sent: true });
     await pending;
     fixture.detectChanges();
     expect(fixture.nativeElement.textContent).toContain(
-      'Votre demande est enregistrée.',
+      'Votre demande a été envoyée.',
     );
-    expect(fixture.nativeElement.textContent).toContain('TEST-REFERENCE');
+    expect(component.sent()).toBe(true);
+    expect(component.form.controls.description.value).toBe('');
+    expect(component.sending()).toBe(false);
     expect(fixture.nativeElement.textContent).not.toContain('e-mail reçu');
+    http.verify();
+  });
+  it('keeps the message when the API does not confirm email submission', async () => {
+    const { component, http } = await setup();
+    component.form.setValue(valid);
+    const pending = component.submit();
+    http.expectOne('/api/contact').flush({ sent: false });
+    await pending;
+    expect(component.sent()).toBe(false);
+    expect(component.form.getRawValue()).toEqual(valid);
+    expect(component.sending()).toBe(false);
+    expect(component.error()).not.toBe('');
     http.verify();
   });
 });

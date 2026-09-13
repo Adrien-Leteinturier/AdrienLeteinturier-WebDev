@@ -21,7 +21,7 @@ export class ContactComponent {
   private readonly fb = inject(FormBuilder);
   readonly sending = signal(false);
   readonly error = signal('');
-  readonly reference = signal('');
+  readonly sent = signal(false);
   readonly form = this.fb.nonNullable.group({
     projectType: ['', Validators.required],
     name: ['', Validators.required],
@@ -48,13 +48,13 @@ export class ContactComponent {
     this.error.set('');
     try {
       const result = await firstValueFrom(
-        this.http.post<{ id: string; stored: boolean }>(
+        this.http.post<{ sent: boolean }>(
           '/api/contact',
           this.form.getRawValue(),
         ),
       );
-      if (!result.stored || !result.id) throw new Error('Unconfirmed storage');
-      this.reference.set(result.id);
+      if (result?.sent !== true) throw new Error('Unconfirmed email');
+      this.sent.set(true);
       this.form.reset();
     } catch (failure: unknown) {
       const status = (failure as { status?: number }).status;

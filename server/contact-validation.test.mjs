@@ -19,7 +19,7 @@ const valid = {
 test("validates requests before calling the mail transport", async (t) => {
   const messages = [];
   const transport = mock.method(nodemailer, "createTransport", () => ({
-    sendMail: (message) => messages.push(message),
+    sendMail: async (message) => messages.push(message),
   }));
   t.after(() => transport.mock.restore());
   const handler = createContactHandler();
@@ -169,4 +169,53 @@ test("validates requests before calling the mail transport", async (t) => {
     "description",
     "email",
   ]);
+});
+
+test("finishes the HTTP response only after SMTP succeeds or fails", async (t) => {
+  for (const succeeds of [true, false]) {
+    let resolveMail, rejectMail;
+    const mail = new Promise((resolve, reject) => {
+      resolveMail = resolve;
+      rejectMail = reject;
+    });
+    const transport = mock.method(nodemailer, "createTransport", () => ({
+      sendMail: () => mail,
+    }));
+    const log = mock.method(console, "error", () => {});
+    t.after(() => {
+      transport.mock.restore();
+      log.mock.restore();
+    });
+    const handler = createContactHandler();
+    const res = {
+      status(code) {
+        this.code = code;
+        return this;
+      },
+      json(data) {
+        this.data = data;
+        return this;
+      },
+    };
+    const pending = handler(
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: valid,
+      },
+      res,
+    );
+    assert.equal(res.data, undefined);
+    if (succeeds) resolveMail({ accepted: ["adrienleteinturier@gmail.com"] });
+    else
+      rejectMail(Object.assign(new Error("SMTP failure"), { code: "EAUTH" }));
+    await pending;
+    assert.equal(res.code, succeeds ? 200 : 502);
+    assert.deepEqual(
+      res.data,
+      succeeds ? { sent: true } : { error: "EMAIL_SEND_FAILED" },
+    );
+    transport.mock.restore();
+    log.mock.restore();
+  }
 });
