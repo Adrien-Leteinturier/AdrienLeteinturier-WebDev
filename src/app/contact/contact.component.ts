@@ -105,7 +105,7 @@ export class ContactComponent implements OnInit {
           ? 'Vous avez envoyé plusieurs demandes récemment. Réessayez plus tard ou contactez-moi sur LinkedIn.'
           : status === 400
             ? 'Vérifiez les champs et réessayez dans quelques secondes. Votre message est conservé dans le formulaire.'
-            : 'L’envoi n’a pas pu être confirmé. Votre message est conservé ici : réessayez ou contactez-moi sur LinkedIn.',
+            : 'L’envoi n’a pas pu être confirmé. Réessayez ou contactez-moi sur LinkedIn.',
       );
       if (status === 400) await this.prepare();
     } finally {
