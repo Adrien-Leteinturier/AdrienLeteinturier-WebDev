@@ -8,6 +8,7 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { regexes } from 'zod/v4/core';
+import { getLeadSource, trackLeadEvent } from '../lead-analytics';
 
 @Component({
   selector: 'app-contact',
@@ -22,6 +23,7 @@ export class ContactComponent {
   readonly sending = signal(false);
   readonly error = signal('');
   readonly sent = signal(false);
+  readonly leadSource = getLeadSource();
   readonly form = this.fb.nonNullable.group({
     projectType: ['', Validators.required],
     name: ['', Validators.required],
@@ -33,6 +35,7 @@ export class ContactComponent {
     budget: [''],
     website: [''],
     privacy: [false, Validators.requiredTrue],
+    source: [this.leadSource],
   });
 
   invalid(field: keyof typeof this.form.controls) {
@@ -44,6 +47,9 @@ export class ContactComponent {
     if (this.sending()) return;
     this.form.markAllAsTouched();
     if (this.form.invalid) return;
+    trackLeadEvent('contact_submit', {
+      projectType: this.form.controls.projectType.value,
+    });
     this.sending.set(true);
     this.error.set('');
     try {
@@ -55,6 +61,9 @@ export class ContactComponent {
       );
       if (result?.sent !== true) throw new Error('Unconfirmed email');
       this.sent.set(true);
+      trackLeadEvent('contact_success', {
+        projectType: this.form.controls.projectType.value,
+      });
       this.form.reset();
     } catch (failure: unknown) {
       const status = (failure as { status?: number }).status;

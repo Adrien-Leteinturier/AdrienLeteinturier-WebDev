@@ -2,6 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ContactComponent } from '../contact/contact.component';
+import { trackLeadEvent } from '../lead-analytics';
 @Component({
   selector: 'app-home',
   imports: [NgOptimizedImage, NavbarComponent, ContactComponent],
@@ -10,6 +11,10 @@ import { ContactComponent } from '../contact/contact.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
+  trackCta(location: string) {
+    trackLeadEvent('cta_click', { location });
+  }
+
   readonly skills = [
     {
       name: 'Design',

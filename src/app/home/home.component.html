@@ -15,9 +15,12 @@
         contact.
       </p>
       <div class="hero-actions">
-        <a class="button" href="#contact"
+        <a class="button" href="#contact" (click)="trackCta('hero')"
           >Parlons de votre projet <span aria-hidden="true">↗</span></a
-        ><a class="text-link" href="#services"
+        ><a
+          class="text-link"
+          href="#services"
+          (click)="trackCta('hero-services')"
           >Découvrir les services <span aria-hidden="true">↓</span></a
         >
       </div>
@@ -126,6 +129,41 @@
       </div>
       <a class="text-link" href="#contact">Discutons de votre besoin ↗</a>
     </article>
+  </section>
+  <section id="offer" class="section offer" aria-labelledby="offer-title">
+    <div class="offer-visual">
+      <img
+        src="assets/img/campaign-square.png"
+        alt="Composition abstraite représentant un parcours de site web clair et structuré"
+        width="1280"
+        height="1280"
+        loading="lazy"
+      />
+      <span class="offer-stamp">PACK PME<br /><strong>VITRINE</strong></span>
+    </div>
+    <div class="offer-copy">
+      <p class="eyebrow">OFFRE DE DÉPART · POUR LES PME DE SERVICES</p>
+      <h2 id="offer-title">
+        Un site vitrine<br /><em>qui travaille pour vous.</em>
+      </h2>
+      <p class="offer-lead">
+        Une présence en ligne claire, crédible et simple à faire évoluer, pensée
+        pour transformer vos visiteurs en prises de contact.
+      </p>
+      <div class="offer-price">
+        <span>À partir de</span><strong>1 500 €</strong
+        ><small>selon le périmètre</small>
+      </div>
+      <ul class="offer-points">
+        <li>Structure des pages et message commercial clarifiés</li>
+        <li>Design responsive et intégration soignée</li>
+        <li>Formulaire de contact relié à votre suivi</li>
+        <li>Mise en ligne et prise en main</li>
+      </ul>
+      <a class="button" href="#contact" (click)="trackCta('offer')"
+        >Parler de mon activité <span aria-hidden="true">↗</span></a
+      >
+    </div>
   </section>
   <section id="work" class="section work" aria-labelledby="work-title">
     <div class="section-heading">

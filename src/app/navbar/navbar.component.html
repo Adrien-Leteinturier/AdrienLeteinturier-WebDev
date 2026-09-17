@@ -15,7 +15,8 @@
       {{ isMenuOpened() ? "Fermer ×" : "Menu +" }}
     </button>
     <div id="main-navigation" [class.open]="isMenuOpened()">
-      <a href="#services" (click)="closeMenu()">Services</a
+      <a href="#offer" (click)="closeMenu()">Pack vitrine</a
+      ><a href="#services" (click)="closeMenu()">Services</a
       ><a href="#work" (click)="closeMenu()">Réalisations</a
       ><a href="#about" (click)="closeMenu()">À propos</a
       ><a class="nav-contact" href="#contact" (click)="closeMenu()"

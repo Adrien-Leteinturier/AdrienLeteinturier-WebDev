@@ -12,6 +12,7 @@ const contactSchema = z.object({
   budget: z.string().optional(),
   website: z.string().optional(),
   privacy: z.literal(true),
+  source: z.string().max(200).optional(),
 });
 
 export function createContactHandler() {
@@ -69,6 +70,7 @@ export function createContactHandler() {
         Délai souhaité : ${contact.timeline}
         Budget : ${contact.budget || "À discuter"}
         Site actuel : ${contact.website || "Non renseigné"}
+        Source : ${contact.source || "Direct"}
 
         DESCRIPTION DU BESOIN
         ${contact.description}

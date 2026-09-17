@@ -14,9 +14,13 @@ npm run format:check
 npm audit
 ```
 
-## État du contact
+## État du contact et acquisition
 
-Le formulaire de cette préversion n’est pas encore activé. `GET /api/contact` répond `available: false` ; les envois renvoient HTTP 503. Aucun faux succès, aucun stockage local de prospect, aucun e-mail n’est envoyé dans cet état.
+Le formulaire est actif : les demandes sont envoyées à `adrienleteinturier@gmail.com` via `GMAIL_APP_PASSWORD` côté serveur. Le champ `source` conserve l’attribution UTM (ou `direct`) dans la notification e-mail.
+
+Les événements `lead_*` sont envoyés à `window.dataLayer` si un outil de mesure est installé, et émis sous forme d’événements `lead-analytics` pour rester compatible avec un branchement ultérieur sans imposer de fournisseur analytics.
+
+Les visuels de campagne sont disponibles dans `src/assets/img/linkedin-banner.png` et `src/assets/img/campaign-square.png`. Les URLs de campagne doivent utiliser `utm_source`, `utm_medium` et `utm_campaign`.
 
 La couche serveur indépendante du fournisseur est testée : schéma autorisé, champs bornés, honeypot, accord, origine autorisée, contenu JSON, limite 16 ko, challenge signé lié au client (3 secondes à 1 heure), et confirmation uniquement après acceptation du dépôt. Une panne conserve les champs côté interface.
 
@@ -31,7 +35,7 @@ La limitation distribuée et la déduplication doivent être appliquées atomiqu
 5. Raccorder le dépôt avec déduplication, quotas durables par IP hachée/e-mail haché et plafond global ; enregistrer atomiquement demande et notification.
 6. Tester une soumission identifiée de bout en bout : retrouver le document privé et vérifier le message reçu dans Gmail, pas seulement son acceptation par un fournisseur.
 
-Le destinataire personnel a été vérifié via Gmail. Il n’est pas inscrit dans le code public.
+Le destinataire personnel est configuré côté serveur et n’est pas inscrit dans le code Angular public.
 
 ## Vercel
 
